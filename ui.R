@@ -339,16 +339,19 @@ shinyUI({
       background-color: #7EA2D1;   /* Background color on hover */
     }
     
-    .nav-pane.active {
-        height: 100%;
-      }
+   
 
     ")
     )
   )
   
   page_navbar(
-    title = "School Funding Formula Simulator",
+    title = div(
+    style = "display: flex; align-items: center; position: relative; top: -3px; margin-right: 30px;", # Adjust top value as needed
+    img(src = "primary_full-color.png", height = "30px", style = "margin-right: 10px;"),
+    "School Funding Formula Simulator"
+  ),
+    # title = "School Funding Formula Simulator",
     theme = bs_theme() |> 
       bs_add_rules(
         "
@@ -366,6 +369,21 @@ shinyUI({
           background-color: #e9ecef;
           color: #212B46;
         }
+        
+         .nav-pane.active {
+        height: 100%;
+    }
+      
+    .navbar-header {
+      height: 30px !important;
+      min-height: 30px !important;
+    }
+    
+    /* Ensure the logo and text are properly positioned */
+    .navbar-brand img {
+      display: inline-block;
+      vertical-align: middle;
+    }
         "
       ),  
     
