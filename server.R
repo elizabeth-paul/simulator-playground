@@ -28,7 +28,7 @@ bw_secondary <- c("#FFC762", # 1 yellow
                   "#FFA497") # 8 peach
 
 # load dist data
-demo_dist <- read_rds("data/demo_dist.rds") 
+demo_dist <- read_rds("data/traditional_lea_23_24.rds") 
 
 
 # shiny server ---------
@@ -37,82 +37,82 @@ server <- function(input, output, session) {
 observeEvent(input$apply_scenario, {
 
   if (input$scenario == "Default") {
-    updateSliderInput(session, "base_amt", value = 7100)
-    updateSliderInput(session, "ed_weight", value = 5)
-    updateSliderInput(session, "conc_pov_weight", value = 2)
+    updateSliderInput(session, "base_amt", value = 8000)
+    updateSliderInput(session, "ed_weight", value = 25)
+    updateSliderInput(session, "conc_pov_weight", value = 5)
     updateSliderInput(session, "conc_pov_eligible", value = c(20, 60))
     
-    updateSliderInput(session, "sped_weight_tier_i", value = 2)
-    updateSliderInput(session, "sped_weight_tier_ii", value = 10)
-    updateSliderInput(session, "sped_weight_tier_iii", value = 75)
+    updateSliderInput(session, "sped_weight_tier_i", value = 20)
+    updateSliderInput(session, "sped_weight_tier_ii", value = 50)
+    updateSliderInput(session, "sped_weight_tier_iii", value = 100)
     
-    updateSliderInput(session, "el_weight", value = 7)
+    updateSliderInput(session, "el_weight", value = 15)
     updateSliderInput(session, "conc_el_type", value = "Tiered")
     updateSliderInput(session, "conc_el_weight_tiered", value = 3)
     updateSliderInput(session, "conc_el_eligible_tier", value = 9)
     
-    updateSliderInput(session, "rural_weight", value = 3)
-    updateSliderInput(session, "rural_elig", value = c(1, 10))
+    updateSliderInput(session, "rural_weight", value = 5)
+    updateSliderInput(session, "rural_elig", value = c(1, 15))
     
     updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 1: Higher Poverty Weights") {
-    updateSliderInput(session, "base_amt", value = 7100)
-    updateSliderInput(session, "ed_weight", value = 10)
-    updateSliderInput(session, "conc_pov_weight", value = 5)
+    updateSliderInput(session, "base_amt", value = 8000)
+    updateSliderInput(session, "ed_weight", value = 35)
+    updateSliderInput(session, "conc_pov_weight", value = 7)
     updateSliderInput(session, "conc_pov_eligible", value = c(40, 80))
     
-    updateSliderInput(session, "sped_weight_tier_i", value = 2)
-    updateSliderInput(session, "sped_weight_tier_ii", value = 10)
-    updateSliderInput(session, "sped_weight_tier_iii", value = 75)
+    updateSliderInput(session, "sped_weight_tier_i", value = 20)
+    updateSliderInput(session, "sped_weight_tier_ii", value = 50)
+    updateSliderInput(session, "sped_weight_tier_iii", value = 100)
     
-    updateSliderInput(session, "el_weight", value = 7)
+    updateSliderInput(session, "el_weight", value = 15)
     updateSliderInput(session, "conc_el_type", value = "Tiered")
     updateSliderInput(session, "conc_el_weight_tiered", value = 3)
     updateSliderInput(session, "conc_el_eligible_tier", value = 9)
     
-    updateSliderInput(session, "rural_weight", value = 3)
-    updateSliderInput(session, "rural_elig", value = c(1, 10))
+    updateSliderInput(session, "rural_weight", value = 5)
+    updateSliderInput(session, "rural_elig", value = c(1, 15))
     
     updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 2: Higher Base Amount") {
-    updateSliderInput(session, "base_amt", value = 7300)
-    updateSliderInput(session, "ed_weight", value = 5)
-    updateSliderInput(session, "conc_pov_weight", value = 2)
+    updateSliderInput(session, "base_amt", value = 9000)
+    updateSliderInput(session, "ed_weight", value = 25)
+    updateSliderInput(session, "conc_pov_weight", value = 5)
     updateSliderInput(session, "conc_pov_eligible", value = c(20, 60))
     
-    updateSliderInput(session, "sped_weight_tier_i", value = 2)
-    updateSliderInput(session, "sped_weight_tier_ii", value = 10)
-    updateSliderInput(session, "sped_weight_tier_iii", value = 75)
+    updateSliderInput(session, "sped_weight_tier_i", value = 20)
+    updateSliderInput(session, "sped_weight_tier_ii", value = 50)
+    updateSliderInput(session, "sped_weight_tier_iii", value = 100)
     
-    updateSliderInput(session, "el_weight", value = 7)
+    updateSliderInput(session, "el_weight", value = 15)
     updateSliderInput(session, "conc_el_type", value = "Tiered")
     updateSliderInput(session, "conc_el_weight_tiered", value = 3)
     updateSliderInput(session, "conc_el_eligible_tier", value = 9)
     
-    updateSliderInput(session, "rural_weight", value = 3)
-    updateSliderInput(session, "rural_elig", value = c(1, 10))
+    updateSliderInput(session, "rural_weight", value = 5)
+    updateSliderInput(session, "rural_elig", value = c(1, 15))
     
     updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 3: Higher SPED and EL Weights") {
-    updateSliderInput(session, "base_amt", value = 7100)
-    updateSliderInput(session, "ed_weight", value = 5)
-    updateSliderInput(session, "conc_pov_weight", value = 2)
+    updateSliderInput(session, "base_amt", value = 8000)
+    updateSliderInput(session, "ed_weight", value = 25)
+    updateSliderInput(session, "conc_pov_weight", value = 5)
     updateSliderInput(session, "conc_pov_eligible", value = c(20, 60))
     
-    updateSliderInput(session, "sped_weight_tier_i", value = 5)
-    updateSliderInput(session, "sped_weight_tier_ii", value = 20)
-    updateSliderInput(session, "sped_weight_tier_iii", value = 100)
+    updateSliderInput(session, "sped_weight_tier_i", value = 25)
+    updateSliderInput(session, "sped_weight_tier_ii", value = 75)
+    updateSliderInput(session, "sped_weight_tier_iii", value = 115)
     
-    updateSliderInput(session, "el_weight", value = 10)
+    updateSliderInput(session, "el_weight", value = 20)
     updateSliderInput(session, "conc_el_type", value = "Escalating")
     updateSliderInput(session, "conc_el_weight", value = 5)
     updateSliderInput(session, "conc_el_eligible", value = c(5, 15))
     
-    updateSliderInput(session, "rural_weight", value = 3)
-    updateSliderInput(session, "rural_elig", value = c(1, 10))
+    updateSliderInput(session, "rural_weight", value = 5)
+    updateSliderInput(session, "rural_elig", value = c(1, 15))
     
     updateSliderInput(session, "charter_weight", value = 2)
     
@@ -228,18 +228,12 @@ observeEvent(input$apply_scenario, {
              ) |> 
       # calculate weighted funding amounts
       mutate(base_total = weight_base * adm,
-             base_diff = base_total - current_base,
-             
-             poverty_weight_comp = current_pov,
              
              poverty_weight_core = ed_adm * weight_base * ed_wt,
-          
              poverty_weight_conc = ed_adm * weight_base * conc_pov_net_wt,
-             
              poverty_weight_total = poverty_weight_core + poverty_weight_conc,
              
-             poverty_weight_diff = poverty_weight_total - poverty_weight_comp,
-             
+
              sped_weight_tier_i_raw = sped_tier_i_adm * weight_base * sped_tier_i_wt,
              sped_weight_tier_ii_raw = sped_tier_ii_adm * weight_base * sped_tier_ii_wt,
              sped_weight_tier_iii_raw =  sped_tier_iii_adm * weight_base * sped_tier_iii_wt,
@@ -252,7 +246,6 @@ observeEvent(input$apply_scenario, {
              sped_weight_total = sped_weight_tier_i + sped_weight_tier_ii +
                sped_weight_tier_iii,
              
-             sped_weight_diff = sped_weight_total,
              
              el_weight_base_raw = el_adm * weight_base * el_wt_raw,
              
@@ -266,7 +259,7 @@ observeEvent(input$apply_scenario, {
              
              el_weight_total = el_weight_total_raw,
              
-             el_weight_diff = el_weight_total - current_el,
+
              
             
              rural_weight_total = case_when(is.na(s_per_sq_mi) ~ 0,
@@ -277,10 +270,7 @@ observeEvent(input$apply_scenario, {
              
              charter_weight_total = charter_weight_total_raw,
              
-             charter_weight_diff = charter_weight_total,
-             
-             # current_cat_total = atrisk_fy25 + el_fy25 + gifted_fy25,
-             current_cat_total = current_pov + current_el,
+
              
              weight_total = poverty_weight_total + sped_weight_total +
                el_weight_total +  rural_weight_total + charter_weight_total,
@@ -303,16 +293,12 @@ observeEvent(input$apply_scenario, {
       base_weight_pct = NA,
       base_adm = sum(adm, na.rm = T),
       base_weight_total = sum(base_total, na.rm = T),
-      base_current = sum(current_base, na.rm = T),
-      base_weight_diff = sum(base_diff, na.rm = T),
-      
+
       poverty_base = mean(weight_base, na.rm = T),
       poverty_weight_pct = mean(ed_wt, na.rm = T),
       poverty_adm = sum(ed_adm, na.rm = T),
       poverty_weight_total = sum(poverty_weight_total, na.rm = T),
-      poverty_current = sum(poverty_weight_comp, na.rm = T),
-      poverty_weight_diff = sum(poverty_weight_diff, na.rm = T),
-                
+
       sped1_base = mean(weight_base, na.rm = T),
       sped2_base = mean(weight_base, na.rm = T),
       sped3_base = mean(weight_base, na.rm = T),
@@ -326,7 +312,6 @@ observeEvent(input$apply_scenario, {
       sped2_weight_total = sum(sped_weight_tier_ii, na.rm = T),
       sped3_weight_total = sum(sped_weight_tier_iii, na.rm = T),
       sped_weight_total = sum(sped_weight_total, na.rm = T),
-      sped_weight_diff = sum(sped_weight_diff, na.rm = T),
                 
       elraw_base = mean(weight_base, na.rm = T),
       elconc_base = mean(weight_base, na.rm = T),
@@ -337,14 +322,11 @@ observeEvent(input$apply_scenario, {
       elraw_weight_total = sum(el_weight_base, na.rm = T),
       elconc_weight_total = sum(el_weight_conc, na.rm = T),
       eltotal_weight_total = sum(el_weight_total, na.rm = T),
-      eltotal_current = sum(current_el, na.rm = T),
-      eltotal_weight_diff = sum(el_weight_diff, na.rm = T),
-      
+
       charter_base = mean(weight_base, na.rm = T),
       charter_weight_pct = mean(charter_wt, na.rm = T),
       charter_adm = sum(charter_adm, na.rm = T),
       charter_weight_total = sum(charter_weight_total, na.rm = T),
-      charter_weight_diff = sum(charter_weight_diff, na.rm = T),
       
       total_current = sum(current_total, na.rm = T)
                 
@@ -352,9 +334,7 @@ observeEvent(input$apply_scenario, {
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
                eltotal_weight_total + charter_weight_total,
             
-             total_weight_diff = base_weight_diff + 
-               poverty_weight_diff + sped_weight_diff +
-               eltotal_weight_diff + charter_weight_diff
+             total_diff = total_weight_total - total_current
       ) |> 
       pivot_longer(everything()) |> 
       
@@ -377,7 +357,7 @@ observeEvent(input$apply_scenario, {
              ADM = adm,
              `Model Funding` = weight_total,
              `Current Funding` = current,
-             `Difference, Model vs. Current` = weight_diff)
+             `Difference, Model vs. Current` = diff)
     
   })
   
@@ -444,7 +424,29 @@ observeEvent(input$apply_scenario, {
   })
   
   # dist detail tbl -------
+
+  # Update district selection dropdown whenever demo_model() changes
+  observe({
+    # Get all unique district names from the current data
+    district_choices <- sort(unique(demo_model()$district))
+    
+    # Store the current selection (if any)
+    current_selection <- input$dist_detail_tbl
+    
+    # If the current selection isn't in the new choices, select the first district
+    selected <- ifelse(current_selection %in% district_choices, 
+                       current_selection, 
+                       district_choices[1])
+    
+    # Update the dropdown with new choices
+    updateSelectInput(session, 
+                      "dist_detail_tbl", 
+                      choices = district_choices,
+                      selected = selected)
+  }) 
   
+  
+    
   dist_detail <- reactive({
     
     demo_model() |> 
@@ -454,16 +456,12 @@ observeEvent(input$apply_scenario, {
       base_weight_pct = NA,
       base_adm = sum(adm, na.rm = T),
       base_weight_total = sum(base_total, na.rm = T),
-      base_current = sum(current_base, na.rm = T),
-      base_weight_diff = sum(base_diff, na.rm = T),
       
       poverty_base = mean(weight_base, na.rm = T),
       poverty_weight_pct = mean(ed_wt, na.rm = T),
       poverty_adm = sum(ed_adm, na.rm = T),
       poverty_weight_total = sum(poverty_weight_total, na.rm = T),
-      poverty_current = sum(poverty_weight_comp, na.rm = T),
-      poverty_weight_diff = sum(poverty_weight_diff, na.rm = T),
-      
+
       sped1_base = mean(weight_base, na.rm = T),
       sped2_base = mean(weight_base, na.rm = T),
       sped3_base = mean(weight_base, na.rm = T),
@@ -477,7 +475,7 @@ observeEvent(input$apply_scenario, {
       sped2_weight_total = sum(sped_weight_tier_ii, na.rm = T),
       sped3_weight_total = sum(sped_weight_tier_iii, na.rm = T),
       sped_weight_total = sum(sped_weight_total, na.rm = T),
-      sped_weight_diff = sum(sped_weight_diff, na.rm = T),
+
       
       elraw_base = mean(weight_base, na.rm = T),
       elconc_base = mean(weight_base, na.rm = T),
@@ -488,14 +486,14 @@ observeEvent(input$apply_scenario, {
       elraw_weight_total = sum(el_weight_base, na.rm = T),
       elconc_weight_total = sum(el_weight_conc, na.rm = T),
       eltotal_weight_total = sum(el_weight_total, na.rm = T),
-      eltotal_current = sum(current_el, na.rm = T),
-      eltotal_weight_diff = sum(el_weight_diff, na.rm = T),
+
+
       
       charter_base = mean(weight_base, na.rm = T),
       charter_weight_pct = mean(charter_wt, na.rm = T),
       charter_adm = sum(charter_adm, na.rm = T),
       charter_weight_total = sum(charter_weight_total, na.rm = T),
-      charter_weight_diff = sum(charter_weight_diff, na.rm = T),
+
       
       total_current = sum(current_total, na.rm = T)
       
@@ -503,9 +501,7 @@ observeEvent(input$apply_scenario, {
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
                eltotal_weight_total + charter_weight_total,
              
-             total_weight_diff = base_weight_diff + 
-               poverty_weight_diff + sped_weight_diff +
-               eltotal_weight_diff + charter_weight_diff
+             total_diff = total_weight_total - total_current
       ) |> 
       pivot_longer(everything()) |> 
       
@@ -528,7 +524,7 @@ observeEvent(input$apply_scenario, {
              ADM = adm,
              `Model Funding` = weight_total,
              `Current Funding` = current,
-             `Difference, Model vs. Current` = weight_diff)
+             `Difference, Model vs. Current` = diff)
     
   })
   
@@ -913,14 +909,14 @@ observeEvent(input$apply_scenario, {
   
   output$diff_total <- reactive({
     dollar(demo_model() |> 
-             summarise(total_diff = sum(total_diff)) |> 
+             summarise(total_diff = sum(weight_total - current_total, na.rm = TRUE)) |> 
              pull(total_diff))
   })
   
   
   output$diff_pp <- reactive({
     dollar(demo_model() |> 
-             summarise(total_diff = sum(total_diff),
+             summarise(total_diff = sum(weight_total - current_total, na.rm = TRUE),
                        adm = sum(adm)) |> 
              mutate(pp_diff = total_diff / adm) |> 
              pull(pp_diff))
@@ -949,8 +945,7 @@ observeEvent(input$apply_scenario, {
     }
     
   )
-  
+
   
 } # close server
-
 

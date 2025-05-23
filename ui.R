@@ -60,8 +60,8 @@ input_sidebar <- sidebar(
       "Base Amount",
       sliderInput("base_amt",
                   "Base Funding Per-Pupil:",
-                  min =  7000, max = 8500,
-                  value = 7100, 
+                  min =  6000, max = 10000,
+                  value = 8000, 
                   step = 50,
                   pre = "$")
       
@@ -70,25 +70,25 @@ input_sidebar <- sidebar(
     ),
     
     accordion_panel(
-      "Poverty Weight",
+      "Economically Disadvantaged Weight",
       sliderInput("ed_weight",
-                  label = "Poverty Weight",
-                  min = 0, max = 20, 
-                  step = 0.25, value = 5,
+                  label = "Economically Disadvantaged Weight",
+                  min = 0, max = 40, 
+                  step = 5, value = 25,
                   post = "%") |> 
-        tooltip("Select weight for poverty"),
+        tooltip("Select weight for economically disadvantaged"),
       
       sliderInput("conc_pov_weight", 
                   label = "Max. Concentrated Poverty Weight", 
                   min = 0, max = 10,
-                  step = .25, value = 2,
+                  step = .25, value = 5,
                   post = "%") |> 
         tooltip("Select concentrated poverty weight"),
       
       sliderInput("conc_pov_eligible", 
                   label = "Concentrated Poverty Min/Max Weight Dir. Cert. % Reqirements", 
                   min = 0, max = 100,
-                  step = 5, value = c(20, 60),
+                  step = 5, value = c(40, 80),
                   post = "%") |> 
         tooltip("Select range of concentrated poverty weight eligibility for districts, from % direct cert. when districts start being eligible for the weight (lower value) to the % direct cert. when districts recieve the maximum concentrated poverty weight (higher value)")
     ),
@@ -97,17 +97,17 @@ input_sidebar <- sidebar(
       "Special Ed. Weights",
       sliderInput("sped_weight_tier_i", 
                   label = "Tier 1", 
-                  min = 0, max = 25, 
-                  step = 0.5, 
-                  value = 2,
+                  min = 0, max = 50, 
+                  step = 5, 
+                  value = 20,
                   post = "%") |> 
         tooltip("Select Tier I special education weight"),
       
       sliderInput("sped_weight_tier_ii", 
                   label = "Tier 2", 
-                  min = 0, max = 50, 
-                  step = 1, 
-                  value = 10,
+                  min = 0, max = 100, 
+                  step = 5, 
+                  value = 50,
                   post = "%") |> 
         tooltip("Select Tier II special education weight"),
       
@@ -115,7 +115,7 @@ input_sidebar <- sidebar(
                   label = "Tier 3", 
                   min = 0, max = 150, 
                   step = 5, 
-                  value = 75,
+                  value = 100,
                   post = "%") |> 
         tooltip("Select Tier III special education weight"),
       accordion_panel(
@@ -184,8 +184,8 @@ input_sidebar <- sidebar(
       "English Learner Weight",
 
       sliderInput("el_weight", label = "EL weight", 
-                  min = 0, max = 16, step = 1, 
-                  value = 7, post = "%") |> 
+                  min = 0, max = 30, step = 5, 
+                  value = 15, post = "%") |> 
         tooltip("Select EL weight"),
       
       radioButtons("conc_el_type", 
@@ -237,12 +237,12 @@ input_sidebar <- sidebar(
                   label = "Rural Weight",
                   min = 0, max = 10,
                   step = 1,
-                  value = 3,
+                  value = 5,
                   post = "%") |> 
         tooltip("Select range of maximum rural weight"),
       sliderInput("rural_elig",
                   label = "Rural Weight Eligibility, Students per Sq. Mi.",
-                  min = 0, max = 20,
+                  min = 0, max = 30,
                   step = 1,
                   value = c(1, 10)) |> 
         tooltip("Select range of maximum rural weight eligibility. Lower value indicates the students per sq. mi. value below which districts would recieve the maximum rural weight; higher value indicates the students per sq. mi when districts would become eligible for the rural weight."),

@@ -1,0 +1,347 @@
+LEA,charter_status,LEA Name,KIND,1,2,3,4,5,6,7,8,9,10,11,12,13,XG,XDY6,XDY7,XDY8,XDY9,XDY10,XDY11,XDY12,XDY13,Total
+ 010 , Traditional , Alamance-Burlington Schools ," 1,640 "," 1,542 "," 1,703 "," 1,565 "," 1,662 "," 1,656 "," 1,654 "," 1,696 "," 1,730 "," 2,133 "," 1,964 "," 1,706 "," 1,403 ",,26,,,,,,,,,"22,080"
+ 020 , Traditional , Alexander County Schools , 315 , 295 , 308 , 292 , 297 , 352 , 328 , 323 , 356 , 384 , 343 , 361 , 284 ,,3,,,,,,,,,"4,241"
+ 030 , Traditional , Alleghany County Schools , 109 , 86 , 106 , 97 , 99 , 100 , 102 , 104 , 107 , 97 , 99 , 113 , 94 ,,,,,,,,,,,"1,313"
+ 040 , Traditional , Anson County Schools , 218 , 242 , 241 , 197 , 231 , 216 , 224 , 199 , 231 , 274 , 244 , 184 , 171 ,10,,,,,,,,,,"2,882"
+ 050 , Traditional , Ashe County Schools , 164 , 191 , 177 , 203 , 162 , 210 , 208 , 194 , 221 , 223 , 228 , 237 , 186 ,6,,,,,,,,,,"2,610"
+ 060 , Traditional , Avery County Schools , 139 , 133 , 166 , 95 , 126 , 131 , 139 , 128 , 128 , 136 , 154 , 138 , 142 ,,6,,,,,,,,,"1,761"
+ 070 , Traditional , Beaufort County Schools , 407 , 402 , 390 , 346 , 392 , 389 , 447 , 469 , 442 , 533 , 456 , 473 , 402 ,27,,,,,,,,,,"5,575"
+ 080 , Traditional , Bertie County Schools , 116 , 122 , 135 , 109 , 121 , 112 , 111 , 141 , 122 , 167 , 144 , 131 , 129 ,,2,,,,,,,,,"1,662"
+ 090 , Traditional , Bladen County Schools , 294 , 292 , 253 , 261 , 263 , 270 , 255 , 251 , 305 , 381 , 335 , 343 , 284 ,1,6,,,,,,,,,"3,794"
+ 100 , Traditional , Brunswick County Schools , 895 , 934 , 970 , 905 , 928 , 966 , 970 ," 1,012 "," 1,041 "," 1,356 "," 1,169 "," 1,070 ", 802 ,25,17,,,,,,,,,"13,060"
+ 110 , Traditional , Buncombe County Schools ," 1,568 "," 1,594 "," 1,789 "," 1,593 "," 1,742 "," 1,604 "," 1,594 "," 1,671 "," 1,594 "," 1,956 "," 1,850 "," 1,825 "," 1,437 ",43,24,,,,,,,,,"21,884"
+ 111 , Traditional , Asheville City Schools , 265 , 253 , 305 , 293 , 275 , 231 , 262 , 227 , 267 , 428 , 377 , 366 , 310 ,,,,,,,,,,,"3,859"
+ 120 , Traditional , Burke County Schools , 781 , 823 , 834 , 795 , 837 , 813 , 796 , 851 , 848 , 998 , 993 , 957 , 838 ,,19,,,,,,,,,"11,183"
+ 130 , Traditional , Cabarrus County Schools ," 2,344 "," 2,511 "," 2,695 "," 2,489 "," 2,654 "," 2,684 "," 2,687 "," 2,668 "," 2,741 "," 3,199 "," 2,969 "," 2,814 "," 2,430 ",4,30,,,,,,,,,"34,919"
+ 132 , Traditional , Kannapolis City Schools , 414 , 403 , 415 , 415 , 398 , 379 , 375 , 388 , 401 , 550 , 439 , 450 , 279 ,,8,,,,,,,,,"5,314"
+ 140 , Traditional , Caldwell County Schools , 674 , 761 , 784 , 725 , 789 , 783 , 780 , 771 , 824 , 850 , 870 , 849 , 760 ,62,21,,,,,,,,,"10,303"
+ 150 , Traditional , Camden County Schools , 142 , 132 , 157 , 161 , 146 , 153 , 144 , 150 , 145 , 143 , 157 , 138 , 132 ,1,1,,,,,,,,,"1,902"
+ 160 , Traditional , Carteret County Public Schools , 485 , 540 , 508 , 546 , 545 , 587 , 699 , 660 , 693 , 686 , 689 , 640 , 528 ,,8,,,,,,,,,"7,814"
+ 170 , Traditional , Caswell County Schools , 166 , 180 , 150 , 157 , 145 , 163 , 147 , 138 , 147 , 197 , 173 , 167 , 118 ,,2,,,,,,,,,"2,050"
+ 180 , Traditional , Catawba County Schools ," 1,108 "," 1,118 "," 1,202 "," 1,128 "," 1,159 "," 1,136 "," 1,263 "," 1,154 "," 1,191 "," 1,393 "," 1,349 "," 1,268 "," 1,125 ",,8,,,,,,,,,"15,602"
+ 181 , Traditional , Hickory City Schools , 260 , 267 , 280 , 269 , 279 , 257 , 297 , 268 , 280 , 368 , 288 , 289 , 242 ,,7,,,,,,,,,"3,651"
+ 182 , Traditional , Newton Conover City Schools , 169 , 186 , 197 , 182 , 194 , 181 , 204 , 171 , 178 , 250 , 218 , 226 , 203 ,,7,,,,,,,,,"2,566"
+ 190 , Traditional , Chatham County Schools , 634 , 611 , 659 , 651 , 684 , 628 , 622 , 632 , 687 , 814 , 797 , 756 , 647 ,4,13,,,,,,,,,"8,839"
+ 200 , Traditional , Cherokee County Schools , 227 , 242 , 233 , 201 , 210 , 214 , 227 , 212 , 245 , 238 , 276 , 217 , 207 ,3,3,,,,,,,,,"2,955"
+ 210 , Traditional , Edenton-Chowan Schools , 120 , 141 , 132 , 135 , 108 , 133 , 112 , 124 , 140 , 157 , 150 , 140 , 126 ,,1,,,,,,,,,"1,719"
+ 220 , Traditional , Clay County Schools , 97 , 106 , 113 , 78 , 84 , 102 , 102 , 93 , 93 , 97 , 112 , 77 , 77 ,,2,,,,,,,,,"1,233"
+ 230 , Traditional , Cleveland County Schools ," 1,061 "," 1,028 "," 1,066 "," 1,016 ", 983 ," 1,008 "," 1,096 "," 1,044 "," 1,104 "," 1,320 "," 1,148 "," 1,074 ", 853 ,,34,,,,,,,,,"13,835"
+ 240 , Traditional , Columbus County Schools , 344 , 389 , 403 , 377 , 371 , 365 , 388 , 385 , 398 , 469 , 416 , 417 , 348 ,35,,,,,,,,,,"5,105"
+ 241 , Traditional , Whiteville City Schools , 132 , 143 , 165 , 146 , 138 , 159 , 157 , 146 , 165 , 164 , 170 , 168 , 126 ,,1,,,,,,,,,"1,980"
+ 250 , Traditional , Craven County Schools , 914 , 980 , 916 , 930 , 922 , 887 , 909 , 909 , 990 ," 1,138 ", 993 , 887 , 737 ,51,17,,,,,,,,,"12,180"
+ 260 , Traditional , Cumberland County Schools ," 3,671 "," 3,726 "," 3,843 "," 3,459 "," 3,690 "," 3,675 "," 3,543 "," 3,630 "," 3,667 "," 4,410 "," 3,942 "," 3,534 "," 3,020 ",6,55,,,,,,,,,"47,871"
+ 270 , Traditional , Currituck County Schools , 309 , 349 , 391 , 374 , 383 , 374 , 343 , 345 , 342 , 313 , 354 , 337 , 269 ,4,2,,,,,,,,,"4,489"
+ 280 , Traditional , Dare County Schools , 300 , 346 , 360 , 355 , 383 , 379 , 404 , 379 , 385 , 414 , 435 , 428 , 346 ,,6,,,,,,,,,"4,920"
+ 290 , Traditional , Davidson County Schools ," 1,239 "," 1,265 "," 1,363 "," 1,254 "," 1,335 "," 1,337 "," 1,382 "," 1,377 "," 1,346 "," 1,676 "," 1,472 "," 1,379 "," 1,144 ",14,26,,,,,,,,,"17,609"
+ 291 , Traditional , Lexington City Schools , 230 , 207 , 243 , 211 , 226 , 211 , 196 , 215 , 196 , 285 , 254 , 213 , 161 ,,3,,,,,,,,,"2,851"
+ 292 , Traditional , Thomasville City Schools , 174 , 165 , 191 , 157 , 168 , 180 , 166 , 165 , 155 , 174 , 174 , 144 , 89 ,,3,,,,,,,,,"2,105"
+ 300 , Traditional , Davie County Schools , 440 , 434 , 440 , 424 , 452 , 443 , 478 , 457 , 502 , 551 , 462 , 489 , 396 ,4,3,,,,,,,,,"5,975"
+ 310 , Traditional , Duplin County Schools , 705 , 711 , 746 , 692 , 721 , 754 , 733 , 744 , 734 , 848 , 729 , 740 , 616 ,14,8,,,,,,,,,"9,495"
+ 320 , Traditional , Durham Public Schools ," 2,275 "," 2,272 "," 2,432 "," 2,264 "," 2,287 "," 2,319 "," 2,120 "," 2,133 "," 2,220 "," 3,204 "," 2,661 "," 2,419 "," 2,129 ",,48,,,,,,,,,"30,783"
+ 330 , Traditional , Edgecombe County Public Schools , 382 , 405 , 355 , 357 , 345 , 383 , 354 , 380 , 410 , 520 , 454 , 413 , 302 ,38,7,,,,,,,,,"5,105"
+ 340 , Traditional , Winston Salem / Forsyth County Schools ," 3,494 "," 3,754 "," 3,709 "," 3,666 "," 3,833 "," 3,929 "," 3,882 "," 3,988 "," 3,913 "," 4,678 "," 4,333 "," 4,072 "," 3,538 ",,53,,,,,,,,,"50,842"
+ 350 , Traditional , Franklin County Schools , 520 , 556 , 594 , 547 , 557 , 582 , 568 , 608 , 545 , 826 , 698 , 657 , 549 ,10,9,,,,,,,,,"7,826"
+ 360 , Traditional , Gaston County Schools ," 2,139 "," 2,126 "," 2,276 "," 2,167 "," 2,113 "," 2,243 "," 2,311 "," 2,369 "," 2,396 "," 2,760 "," 2,474 "," 2,275 "," 1,972 ",37,56,,,,,,,,,"29,714"
+ 370 , Traditional , Gates County Schools , 90 , 104 , 101 , 97 , 99 , 110 , 125 , 105 , 119 , 110 , 109 , 110 , 101 ,,,,,,,,,,,"1,380"
+ 380 , Traditional , Graham County Schools , 88 , 74 , 91 , 76 , 88 , 73 , 75 , 85 , 88 , 78 , 90 , 79 , 68 ,,,,,,,,,,,"1,053"
+ 390 , Traditional , Granville County Schools , 471 , 511 , 472 , 465 , 472 , 431 , 464 , 511 , 471 , 586 , 557 , 529 , 439 ,9,6,,,,,,,,,"6,394"
+ 400 , Traditional , Greene County Schools , 199 , 187 , 213 , 173 , 168 , 170 , 200 , 227 , 242 , 256 , 238 , 228 , 158 ,5,3,,,,,,,,,"2,667"
+ 410 , Traditional , Guilford County Schools ," 4,580 "," 4,833 "," 4,948 "," 4,703 "," 5,004 "," 4,974 "," 5,006 "," 4,735 "," 5,116 "," 6,102 "," 5,646 "," 5,399 "," 4,717 ",42,74,,,,,,,,,"65,879"
+ 420 , Traditional , Halifax County Schools , 167 , 182 , 164 , 154 , 155 , 141 , 155 , 147 , 147 , 209 , 157 , 141 , 129 ,,1,,,,,,,,,"2,049"
+ 421 , Traditional , Roanoke Rapids City Schools , 180 , 204 , 200 , 162 , 181 , 173 , 202 , 211 , 186 , 242 , 233 , 225 , 205 ,,,,,,,,,,,"2,604"
+ 422 , Traditional , Weldon City Schools , 46 , 49 , 39 , 38 , 45 , 50 , 42 , 43 , 50 , 82 , 57 , 69 , 66 ,1,,,,,,,,,,677
+ 430 , Traditional , Harnett County Schools ," 1,455 "," 1,511 "," 1,554 "," 1,425 "," 1,538 "," 1,446 "," 1,464 "," 1,462 "," 1,488 "," 1,851 "," 1,556 "," 1,577 "," 1,154 ",1,21,,,,,,,,,"19,503"
+ 440 , Traditional , Haywood County Schools , 495 , 528 , 525 , 469 , 458 , 501 , 495 , 474 , 474 , 529 , 516 , 494 , 450 ,15,,,,,,,,,,"6,423"
+ 450 , Traditional , Henderson County Schools , 882 , 859 , 952 , 949 , 921 , 937 ," 1,033 ", 934 , 975 ," 1,036 "," 1,121 "," 1,008 ", 891 ,22,13,,,,,,,,,"12,533"
+ 460 , Traditional , Hertford County Schools , 177 , 196 , 157 , 183 , 154 , 174 , 154 , 170 , 164 , 230 , 193 , 161 , 157 ,4,,,,,,,,,,"2,274"
+ 470 , Traditional , Hoke County Schools , 610 , 680 , 713 , 646 , 657 , 683 , 679 , 668 , 645 , 771 , 589 , 625 , 452 ,11,9,,,,,,,,,"8,438"
+ 480 , Traditional , Hyde County Schools , 33 , 26 , 41 , 31 , 40 , 43 , 38 , 25 , 32 , 42 , 32 , 36 , 30 ,,,,,,,,,,,449
+ 490 , Traditional , Iredell-Statesville Schools ," 1,358 "," 1,397 "," 1,546 "," 1,424 "," 1,457 "," 1,450 "," 1,513 "," 1,556 "," 1,562 "," 1,870 "," 1,864 "," 1,825 "," 1,490 ",98,23,,,,,,,,,"20,433"
+ 491 , Traditional , Mooresville Graded School District , 388 , 425 , 431 , 409 , 431 , 431 , 414 , 433 , 448 , 505 , 464 , 489 , 463 ,,,,,,,,,,,"5,731"
+ 500 , Traditional , Jackson County Public Schools , 223 , 227 , 271 , 273 , 236 , 248 , 242 , 273 , 259 , 299 , 301 , 275 , 220 ,4,6,,,,,,,,,"3,357"
+ 510 , Traditional , Johnston County Public Schools ," 2,478 "," 2,599 "," 2,724 "," 2,640 "," 2,810 "," 2,679 "," 2,773 "," 2,808 "," 2,861 "," 3,371 "," 3,222 "," 2,978 "," 2,688 ",68,46,,,,,,,,,"36,745"
+ 520 , Traditional , Jones County Schools , 83 , 75 , 70 , 90 , 80 , 73 , 75 , 84 , 67 , 90 , 71 , 80 , 42 ,,,,,,,,,,,980
+ 530 , Traditional , Lee County Schools , 683 , 685 , 733 , 684 , 682 , 714 , 575 , 640 , 686 , 717 , 819 , 751 , 558 ,26,11,,,,,,,,,"8,964"
+ 540 , Traditional , Lenoir County Public Schools , 573 , 597 , 624 , 570 , 610 , 627 , 623 , 623 , 635 , 717 , 685 , 615 , 551 ,23,18,,,,,,,,,"8,091"
+ 550 , Traditional , Lincoln County Schools , 797 , 846 , 817 , 845 , 877 , 884 , 888 , 854 , 881 ," 1,010 ", 962 , 910 , 814 ,,10,,,,,,,,,"11,395"
+ 560 , Traditional , Macon County Schools , 306 , 347 , 335 , 339 , 341 , 342 , 335 , 306 , 320 , 406 , 334 , 351 , 289 ,5,1,,,,,,,,,"4,357"
+ 570 , Traditional , Madison County Schools , 155 , 157 , 176 , 180 , 154 , 162 , 154 , 169 , 131 , 167 , 157 , 156 , 158 ,23,0,,,,,,,,,"2,099"
+ 580 , Traditional , Martin County Schools , 222 , 229 , 203 , 225 , 200 , 197 , 149 , 164 , 193 , 256 , 167 , 175 , 108 ,,1,,,,,,,,,"2,489"
+ 590 , Traditional , McDowell County Schools , 393 , 405 , 402 , 397 , 427 , 401 , 363 , 408 , 439 , 445 , 464 , 393 , 433 ,44,5,,,,,,,,,"5,419"
+ 600 , Traditional , Charlotte-Mecklenburg Schools ," 10,258 "," 10,678 "," 11,047 "," 10,457 "," 10,552 "," 10,820 "," 10,415 "," 10,507 "," 11,022 "," 12,921 "," 12,035 "," 9,735 "," 9,583 ",169,216,,,,0,,0,,,"140,415"
+ 610 , Traditional , Mitchell County Schools , 127 , 114 , 141 , 105 , 122 , 119 , 135 , 119 , 114 , 164 , 166 , 140 , 121 ,10,,,,,,,,,,"1,697"
+ 620 , Traditional , Montgomery County Schools , 243 , 235 , 249 , 246 , 256 , 276 , 255 , 247 , 258 , 311 , 310 , 291 , 259 ,23,11,,,,,,,,,"3,470"
+ 630 , Traditional , Moore County Schools , 909 , 904 , 959 , 917 , 910 , 946 , 962 , 956 , 944 ," 1,188 "," 1,178 "," 1,045 ", 953 ,,21,,,,,,,,,"12,792"
+ 640 , Traditional , Nash County Public Schools ," 1,087 "," 1,081 "," 1,129 ", 988 ," 1,030 "," 1,073 "," 1,094 "," 1,098 "," 1,134 "," 1,195 "," 1,163 "," 1,114 ", 937 ,84,21,,,,,,,,,"14,228"
+ 650 , Traditional , New Hanover County Schools ," 1,708 "," 1,863 "," 1,892 "," 1,840 "," 1,810 "," 1,851 "," 1,725 "," 1,772 "," 1,761 "," 2,357 "," 2,101 "," 2,153 "," 1,796 ",40,50,,,,,,,,,"24,719"
+ 660 , Traditional , Northampton County Schools , 88 , 112 , 92 , 70 , 57 , 91 , 75 , 102 , 98 , 121 , 99 , 96 , 100 ,,1,,,,,,,,,"1,202"
+ 670 , Traditional , Onslow County Schools ," 2,028 "," 2,166 "," 2,181 "," 2,069 "," 2,089 "," 2,235 "," 2,060 "," 2,100 "," 2,112 "," 2,348 "," 2,089 "," 1,941 "," 1,559 ",,25,,,,,,,,,"27,002"
+ 680 , Traditional , Orange County Schools , 462 , 502 , 492 , 503 , 547 , 552 , 483 , 523 , 562 , 632 , 601 , 605 , 500 ,,6,,,,,,,,,"6,970"
+ 681 , Traditional , Chapel Hill-Carrboro City Schools , 615 , 758 , 717 , 789 , 837 , 867 , 840 , 928 , 952 ," 1,030 "," 1,028 ", 948 , 944 ,,13,,,,,,,0,,"11,266"
+ 690 , Traditional , Pamlico County Schools , 76 , 80 , 74 , 78 , 65 , 93 , 72 , 90 , 90 , 112 , 132 , 98 , 91 ,,,,,,,,,,,"1,151"
+ 700 , Traditional , Elizabeth City-Pasquotank Public Schools , 378 , 401 , 428 , 386 , 356 , 307 , 307 , 277 , 323 , 406 , 384 , 354 , 255 ,,3,,,,,,,,,"4,565"
+ 710 , Traditional , Pender County Schools , 695 , 769 , 852 , 834 , 855 , 852 , 810 , 844 , 834 , 876 , 953 , 885 , 707 ,4,10,,,,,,,,,"10,780"
+ 720 , Traditional , Perquimans County Schools , 115 , 113 , 138 , 131 , 134 , 127 , 125 , 122 , 121 , 146 , 147 , 140 , 88 ,,,,,,,,,,,"1,647"
+ 730 , Traditional , Person County Schools , 298 , 328 , 340 , 344 , 375 , 356 , 311 , 324 , 332 , 393 , 315 , 323 , 235 ,20,5,,,,,,,,,"4,299"
+ 740 , Traditional , Pitt County Schools ," 1,770 "," 1,737 "," 1,774 "," 1,704 "," 1,749 "," 1,738 "," 1,798 "," 1,764 "," 1,930 "," 2,201 "," 2,070 "," 1,773 "," 1,536 ",50,34,,,,,,,,,"23,628"
+ 750 , Traditional , Polk County Schools , 147 , 156 , 164 , 138 , 162 , 148 , 160 , 146 , 166 , 175 , 176 , 143 , 130 ,,1,,,,,,,,,"2,012"
+ 760 , Traditional , Randolph County School System ," 1,124 "," 1,183 "," 1,139 "," 1,080 "," 1,137 "," 1,123 "," 1,196 "," 1,110 "," 1,193 "," 1,272 "," 1,230 "," 1,133 "," 1,012 ",3,7,,,,,,,,,"14,942"
+ 761 , Traditional , Asheboro City Schools , 358 , 343 , 347 , 333 , 334 , 331 , 332 , 341 , 334 , 337 , 355 , 315 , 288 ,,4,,,,,,,,,"4,352"
+ 770 , Traditional , Richmond County Schools , 453 , 456 , 519 , 437 , 460 , 455 , 470 , 512 , 486 , 581 , 551 , 559 , 458 ,8,7,,,,,,,,,"6,412"
+ 780 , Traditional , Public Schools of Robeson County ," 1,528 "," 1,663 "," 1,606 "," 1,486 "," 1,517 "," 1,574 "," 1,481 "," 1,513 "," 1,598 "," 2,025 "," 1,696 "," 1,383 "," 1,241 ",44,1,,,,,,,,,"20,356"
+ 790 , Traditional , Rockingham County Schools , 815 , 867 , 946 , 825 , 851 , 851 , 812 , 822 , 821 , 976 , 911 , 795 , 666 ,10,8,,,,,,,,,"10,976"
+ 800 , Traditional , Rowan-Salisbury Schools ," 1,246 "," 1,318 "," 1,454 "," 1,276 "," 1,263 "," 1,342 "," 1,278 "," 1,285 "," 1,282 "," 1,728 "," 1,503 "," 1,438 "," 1,191 ",,13,,,,,,,,,"17,617"
+ 810 , Traditional , Rutherford County Schools , 551 , 570 , 528 , 554 , 523 , 532 , 526 , 539 , 529 , 580 , 602 , 595 , 428 ,,4,,,,,,,,,"7,061"
+ 820 , Traditional , Sampson County Schools , 608 , 632 , 619 , 587 , 597 , 585 , 609 , 602 , 610 , 663 , 633 , 549 , 507 ,19,4,,,,,,,,,"7,824"
+ 821 , Traditional , Clinton City Schools , 224 , 257 , 217 , 211 , 223 , 222 , 267 , 201 , 215 , 238 , 214 , 192 , 165 ,,2,,,,,,,,,"2,848"
+ 830 , Traditional , Scotland County Schools , 388 , 435 , 404 , 400 , 393 , 364 , 380 , 442 , 418 , 420 , 426 , 411 , 338 ,4,5,,,,7,6,2,38,,"5,281"
+ 840 , Traditional , Stanly County Schools , 677 , 704 , 705 , 657 , 664 , 690 , 617 , 671 , 630 , 684 , 630 , 690 , 567 ,31,14,,,,,,,,,"8,631"
+ 850 , Traditional , Stokes County Schools , 389 , 421 , 426 , 373 , 410 , 378 , 437 , 439 , 428 , 450 , 473 , 450 , 362 ,,5,,,,,,,,,"5,441"
+ 860 , Traditional , Surry County Schools , 490 , 535 , 540 , 524 , 522 , 513 , 482 , 551 , 539 , 634 , 625 , 611 , 500 ,37,5,,,,,,,,,"7,108"
+ 861 , Traditional , Elkin City Schools , 98 , 85 , 80 , 70 , 78 , 88 , 109 , 91 , 110 , 104 , 95 , 115 , 97 ,,2,,,,,,,,,"1,222"
+ 862 , Traditional , Mount Airy City Schools , 127 , 112 , 117 , 117 , 92 , 127 , 132 , 129 , 135 , 157 , 165 , 145 , 139 ,,,,,,,,,,,"1,694"
+ 870 , Traditional , Swain County Schools , 145 , 138 , 126 , 138 , 129 , 131 , 122 , 140 , 138 , 155 , 165 , 150 , 106 ,,1,,,,,,,,,"1,784"
+ 880 , Traditional , Transylvania County Schools , 229 , 220 , 242 , 216 , 261 , 213 , 218 , 228 , 244 , 318 , 278 , 265 , 240 ,,,,,,,,,,,"3,172"
+ 890 , Traditional , Tyrrell County Schools , 23 , 22 , 24 , 31 , 35 , 25 , 29 , 36 , 27 , 50 , 51 , 47 , 35 ,2,,,,,,,,,,437
+ 900 , Traditional , Union County Public Schools ," 2,576 "," 2,706 "," 2,907 "," 2,812 "," 3,002 "," 3,067 "," 3,092 "," 3,340 "," 3,373 "," 3,896 "," 3,693 "," 3,508 "," 3,294 ",29,83,,,,,,,,,"41,378"
+ 910 , Traditional , Vance County Schools , 435 , 447 , 443 , 368 , 378 , 428 , 381 , 359 , 382 , 437 , 377 , 339 , 270 ,25,3,,,,,,,,,"5,072"
+ 920 , Traditional , Wake County Schools ," 11,199 "," 11,502 "," 12,102 "," 11,553 "," 11,878 "," 11,765 "," 11,730 "," 12,090 "," 12,501 "," 14,630 "," 13,447 "," 13,085 "," 12,115 ",78,,,,,,,,,,"159,675"
+ 930 , Traditional , Warren County Schools , 121 , 115 , 110 , 125 , 116 , 129 , 112 , 123 , 129 , 139 , 130 , 118 , 102 ,14,,,,,,,,,,"1,583"
+ 940 , Traditional , Washington County Schools , 70 , 85 , 92 , 63 , 74 , 83 , 75 , 59 , 67 , 95 , 89 , 75 , 72 ,1,1,,,,,,,,,"1,001"
+ 950 , Traditional , Watauga County Schools , 332 , 323 , 332 , 324 , 337 , 338 , 338 , 367 , 350 , 445 , 418 , 369 , 304 ,,6,,,,,,,,,"4,583"
+ 960 , Traditional , Wayne County Public Schools ," 1,299 "," 1,337 "," 1,303 "," 1,320 "," 1,324 "," 1,313 "," 1,356 "," 1,338 "," 1,317 "," 1,515 "," 1,312 "," 1,195 ", 984 ,11,25,,,,,,,,,"16,949"
+ 970 , Traditional , Wilkes County Schools , 627 , 615 , 647 , 605 , 629 , 625 , 635 , 596 , 594 , 644 , 750 , 642 , 533 ,24,10,,,,,,,,,"8,176"
+ 980 , Traditional , Wilson County Schools , 788 , 794 , 846 , 701 , 707 , 701 , 760 , 759 , 756 ," 1,002 ", 822 , 733 , 644 ,43,14,,,,,,,,,"10,070"
+ 990 , Traditional , Yadkin County Schools , 376 , 384 , 396 , 365 , 366 , 368 , 363 , 373 , 372 , 433 , 384 , 393 , 319 ,48,6,,,,,,,,,"4,946"
+ 995 , Traditional , Yancey County Schools , 168 , 163 , 165 , 151 , 160 , 163 , 153 , 132 , 156 , 155 , 153 , 163 , 126 ,,1,,,,,,,,,"2,009"
+ 00A , Charter , North Carolina Cyber Academy ,70,103,104,120,117,148,187,246,282,319,257,248,220,,,,,,,,,,,"2,421"
+ 00B , Charter , NC Virtual Academy ,195,206,234,214,213,227,276,286,293,327,232,182,130,,,,,,,,,,,"3,015"
+ 01B , Charter , River Mill Academy ,68,66,70,69,67,67,65,55,57,43,45,47,35,,,,,,,,,,,754
+ 01C , Charter , Clover Garden ,67,71,74,74,74,75,81,81,101,96,56,43,37,,,,,,,,,,,930
+ 01D , Charter , The Hawbridge School ,32,31,34,35,42,44,39,57,47,55,66,61,39,,,,,,,,,,,582
+ 01F , Charter , Alamance Community School ,101,96,102,104,77,88,39,,,,,,,,,,,,,,,,,607
+ 06B , Charter , Marjorie Williams Academy ,14,8,7,7,12,9,5,10,14,7,12,4,0,,,,,,,,,,,109
+ 07A , Charter , Washington Montessori ,44,27,44,44,37,35,36,32,26,17,25,25,17,,,,,,,,,,,409
+ 09A , Charter , Paul R Brown Leadership Academy ,,,,,,,19,28,37,28,27,28,37,,,,,,,,,,,204
+ 09B , Charter , Emereau: Bladen ,49,63,56,53,77,68,72,72,59,,,,,,,,,,,,,,,569
+ 10A , Charter , Classical Charter Schools of Leland ,113,115,109,112,113,101,109,90,80,,,,,,,,,,,,,,,942
+ 10B , Charter , Classical Charter Schools of Southport ,76,80,81,75,77,65,53,36,30,,,,,,,,,,,,,,,573
+ 11A , Charter , Evergreen Community Charter ,43,48,48,48,48,51,52,50,49,,,,,,,,,,,,,,,437
+ 11B , Charter , ArtSpace Charter ,34,36,40,42,49,51,49,52,50,,,,,,,,,,,,,,,403
+ 11C , Charter , Invest Collegiate - Imagine ,101,106,110,108,99,99,109,110,94,81,75,60,51,,,,,,,,,,,"1,203"
+ 11D , Charter , The Franklin School of Innovation ,,,,,,82,97,100,98,91,90,74,59,,,,,,,,,,,691
+ 11F , Charter , Asheville PEAK Academy ,33,31,31,19,21,19,,,,,,,,,,,,,,,,,,154
+ 11K , Charter , Francine Delany New School ,20,21,21,21,21,22,22,22,22,,,,,,,,,,,,,,,192
+ 11L , Charter , Mountain City Public Montessori ,21,20,23,15,7,8,4,,,,,,,,,,,,,,,,,98
+ 12A , Charter , The New Dimensions School ,61,68,65,69,64,62,65,47,49,,,,,,,,,,,,,,,550
+ 13A , Charter , Carolina International School ,54,33,65,40,50,52,67,67,72,77,60,62,35,,,,,,,,,,,734
+ 13B , Charter , Cabarrus Charter Academy ,88,70,70,69,48,47,73,69,76,64,42,29,23,,,,,,,,,,,768
+ 13C , Charter , A.C.E. Academy ,49,53,54,45,41,48,53,39,49,,,,,,,,,,,,,,,431
+ 13D , Charter , Concord Lake STEAM Academy ,107,100,103,72,77,58,63,52,39,,,,,,,,,,,,,,,671
+ 14B , Charter , Oak Hill Charter School ,31,34,25,19,22,18,20,21,15,,,,,,,,,,,,,,,205
+ 16B , Charter , Tiller School ,34,35,31,34,32,32,,,,,,,,,,,,,,,,,,198
+ 19A , Charter , Chatham Charter ,39,39,42,44,41,42,46,45,45,55,58,38,44,,,,,,,,,,,578
+ 19B , Charter , Woods Charter School ,31,33,32,37,36,40,40,40,40,43,46,44,47,,,,,,,,,,,509
+ 19C , Charter , Willow Oak Montessori ,33,36,35,40,34,30,27,21,16,,,,,,,,,,,,,,,272
+ 19F , Charter , School of the Arts for Boys Acad (SABA) , - , - , - , 14 , 10 , 10 , 14 , - , - , - , - , - , - , - , - , - , - , - , - , - , - , - , - , 48 
+ 23A , Charter , Pinnacle Classical Academy ,104,101,108,95,100,98,97,100,105,91,64,45,28,,,,,,,,,,,"1,136"
+ 24B , Charter , Thomas Academy ,,,,,,,8,9,13,11,6,12,16,,,,,,,,,,,75
+ 24N , Charter , Classical Charter Schools of Whiteville ,95,89,97,101,103,99,100,85,78,,,,,,,,,,,,,,,847
+ 26B , Charter , Alpha Academy ,93,97,100,93,93,98,100,102,85,48,32,29,18,,,,,,,,,,,988
+ 26C , Charter , The Capitol Encore Academy ,74,67,80,56,73,84,84,90,63,48,42,10,4,,,,,,,,,,,775
+ 27A , Charter , Water's Edge Village School ,2,5,12,4,5,4,6,1,3,,,,,,,,,,,,,,,42
+ 29A , Charter , Davidson Charter Academy ,83,78,76,70,66,54,60,46,44,,,,,,,,,,,,,,,577
+ 32A , Charter , Maureen Joy Charter ,66,67,67,68,68,72,69,68,69,,,,,,,,,,,,,,,614
+ 32B , Charter , Healthy Start Academy ,82,87,80,67,58,73,80,65,62,54,54,,,,,,,,,,,,,762
+ 32C , Charter , Community School of Digital and Visual A ,22,18,17,16,25,22,16,14,28,,,,,,,,,,,,,,,178
+ 32D , Charter , Kestrel Heights School ,41,47,43,42,45,45,57,63,56,,,,,,,,,,,,,,,439
+ 32H , Charter , Research Triangle Charter ,85,81,80,79,90,76,78,75,78,,,,,,,,,,,,,,,722
+ 32K , Charter , Central Park School For Children ,65,66,66,63,68,80,70,70,43,,,,,,,,,,,,,,,591
+ 32L , Charter , Voyager Academy ,103,106,104,104,103,104,105,103,101,110,101,104,94,,3,,,,,,,,,"1,345"
+ 32M , Charter , Global Scholars Academy ,23,23,25,25,20,21,13,23,22,,,,,,,,,,,,,,,195
+ 32N , Charter , Research Triangle High School ,,,,,,,,,,167,151,125,115,,,,,,,,,,,558
+ 32P , Charter , The Institute for the Development of You ,37,46,47,46,59,41,32,38,43,,,,,,,,,,,,,,,389
+ 32Q , Charter , Reaching All Minds Academy ,40,41,39,43,45,37,43,43,45,,,,,,,,,,,,,,,376
+ 32R , Charter , Excelsior Classical Academy ,93,93,92,97,92,94,90,94,91,56,59,32,34,,,,,,,,,,,"1,017"
+ 32S , Charter , KIPP Durham College Preparatory ,56,50,46,,,,49,68,84,,,,,,,,,,,,,,,353
+ 32T , Charter , Discovery Charter School ,,,,,,,96,103,102,48,54,,,,,,,,,,,,,403
+ 33A , Charter , North East Carolina Preparatory School ,91,55,72,76,62,71,104,80,91,88,86,67,63,,,,,,,,,,,"1,006"
+ 34B , Charter , Quality Education Academy ,52,56,63,51,58,60,60,42,60,42,39,28,41,,,,,,,,,,,652
+ 34D , Charter , Carter G Woodson School ,29,46,33,34,44,50,45,56,45,42,29,21,18,,,,,,,,,,,492
+ 34F , Charter , Forsyth Academy ,84,81,87,75,86,88,83,80,78,,,,,,,,,,,,,,,742
+ 34G , Charter , Arts Based School ,89,98,93,59,60,60,56,48,46,,,,,,,,,,,,,,,609
+ 34H , Charter , NC Leadership Charter Academy ,88,89,90,95,94,76,101,104,104,87,94,77,51,,,,,,,,,,,"1,150"
+ 35A , Charter , Crosscreek Charter School ,45,46,42,43,42,44,46,40,40,,,,,,,,,,,,,,,388
+ 35B , Charter , Youngsville Academy ,59,55,63,56,60,54,61,51,40,25,15,,,,,,,,,,,,,539
+ 35C , Charter , Wake Preparatory Academy ,158,169,175,178,186,184,183,198,194,199,162,93,62,,,,,,,,,,,"2,141"
+ 36B , Charter , Piedmont Community Charter ,130,135,133,135,134,159,161,163,163,158,153,156,127,,,,,,,,,,,"1,907"
+ 36C , Charter , Mountain Island Charter ,125,126,126,132,138,142,136,131,137,136,137,131,131,,,,,,,,,,,"1,728"
+ 36F , Charter , Ridgeview Charter School ,37,36,39,39,23,42,33,21,10,,,,,,,,,,,,,,,280
+ 36G , Charter , Community Public Charter ,113,108,103,110,78,74,50,57,26,23,,,,,,,,,,,,,,742
+ 39A , Charter , Falls Lake Academy ,83,84,81,84,81,87,81,88,81,91,95,89,81,,,,,,,,,,,"1,106"
+ 39B , Charter , Oxford Preparatory School ,62,54,65,59,71,68,68,73,72,70,66,65,49,,,,,,,,,,,842
+ 41B , Charter , Greensboro Academy ,86,84,84,84,86,87,84,84,84,,,,,,,,,,,,,,,763
+ 41C , Charter , Guilford Preparatory Academy ,71,74,47,65,66,61,91,57,61,,,,,,,,,,,,,,,593
+ 41D , Charter , Phoenix Academy Inc ,139,133,136,136,133,123,138,129,134,139,78,40,17,,,,,,,,,,,"1,475"
+ 41F , Charter , Triad Math and Science Academy ,109,90,92,89,96,87,128,112,109,95,99,96,81,,,,,,,,,,,"1,283"
+ 41G , Charter , Cornerstone Charter Academy ,100,99,100,99,101,100,108,108,108,112,107,99,97,,,,,,,,,,,"1,338"
+ 41H , Charter , The College Preparatory and Leadership A ,76,74,92,66,67,67,75,76,80,63,46,30,29,,,,,,1,,,,,842
+ 41J , Charter , Summerfield Charter Academy ,90,86,86,89,88,88,86,86,85,,,,,,,,,,,,,,,784
+ 41K , Charter , Piedmont Classical High School ,,,,,,,,,,122,122,101,99,,,,,,,,,,,444
+ 41L , Charter , Gate City Charter Academy ,93,84,79,77,81,64,79,69,65,,,,,,,,,,,,,,,691
+ 41M , Charter , Next Generation Academy ,49,66,68,50,62,62,34,23,,,,,,,,,,,,,,,,414
+ 41N , Charter , The Experiential School of Greensboro ,21,22,25,30,28,31,40,34,28,,,,,,,,,,,,,,,259
+ 41Q , Charter , Revolution Academy ,80,80,82,80,82,81,80,80,79,,,,,,,,,,,,,,,724
+ 41R , Charter , Summit Creek Academy ,93,87,92,79,78,79,73,81,,,,,,,,,,,,,,,,662
+ 42A , Charter , KIPP Halifax College Preparatory ,49,57,57,64,62,72,76,45,54,,,,,,,,,,,,,,,536
+ 42B , Charter , Hobgood Charter School ,41,41,49,50,51,50,42,50,47,39,23,17,17,,,,,,,,,,,517
+ 43C , Charter , Anderson Creek Academy ,38,43,55,60,44,40,,,,,,,,,,,,,,,,,,280
+ 43D , Charter , Achievement Charter Academy ,37,30,25,34,33,20,11,,,,,,,,,,,,,,,,,190
+ 44A , Charter , Shining Rock Classical Academy: CFA ,58,67,62,54,57,51,72,60,52,30,19,24,,,,,,,,,,,,606
+ 45A , Charter , The Mountain Community Sch ,20,19,20,21,22,22,24,24,23,,,,,,,,,,,,,,,195
+ 45B , Charter , FernLeaf Community Charter School ,95,91,96,47,51,47,48,47,48,47,41,,,,,,,,,,,,,658
+ 49B , Charter , American Renaissance School ,138,117,98,106,94,75,68,59,58,,,,,,,,,,,,,,,813
+ 49D , Charter , Success Institute Charter School ,11,7,6,10,11,11,8,10,12,,,,,,,,,,,,,,,86
+ 49E , Charter , Pine Lake Preparatory ,111,113,119,121,122,121,161,162,165,170,171,169,169,,,,,,,,,,,"1,874"
+ 49F , Charter , Langtree Charter Academy ,137,121,105,113,101,104,128,138,169,140,111,109,100,,,,,,,,,,,"1,576"
+ 49G , Charter , Iredell Charter Academy ,102,86,83,83,76,70,68,71,56,,,,,,,,,,,,,,,695
+ 50A , Charter , Summit Charter ,19,21,20,17,32,31,24,30,35,20,18,13,16,,,,,,,,,,,296
+ 51A , Charter , Neuse Charter School ,75,81,67,70,65,71,82,75,68,72,64,50,44,,,,,,,,,,,884
+ 51B , Charter , Johnston Charter Academy ,77,89,83,90,83,85,80,73,73,,,,,,,,,,,,,,,733
+ 51C , Charter , American Leadership Academy Johnston ,143,142,161,155,156,162,177,171,182,161,132,62,,,,,,,,,,,,"1,804"
+ 53B , Charter , Ascend Leadership Academy: Lee County ,,,,,,,91,87,86,92,91,73,62,,,,,,,,,,,582
+ 53C , Charter , MINA Charter School of Lee County ,58,52,55,44,47,44,37,26,22,,,,,,,,,,,,,,,385
+ 53D , Charter , Central Carolina Academy Charter ,,,,,,,96,92,101,80,39,22,,,,,,,,,,,,430
+ 54A , Charter , Children's Village Academy ,9,15,17,11,14,21,19,20,17,,,,,,,,,,,,,,,143
+ 55A , Charter , Lincoln Charter School ,131,145,148,147,152,154,206,202,204,214,199,173,176,,,,,,,,,,,"2,251"
+ 55B , Charter , West Lake Preparatory Academy ,54,60,47,53,38,41,22,22,20,,,,,,,,,,,,,,,357
+ 58B , Charter , Bear Grass Charter School ,,,,,,,77,65,60,61,66,51,58,,,,,,,,,,,438
+ 60B , Charter , Sugar Creek Charter ,92,92,123,112,117,125,150,147,142,129,103,92,75,,,,,,,,,,,"1,499"
+ 60D , Charter , Lake Norman Charter ,118,120,120,125,125,199,199,200,200,209,207,197,187,,,,,,,,,,,"2,206"
+ 60F , Charter , Metrolina Regional Scholars Academy ,36,36,40,44,44,60,46,46,46,,,,,,,,,,,,,,,398
+ 60G , Charter , Queen's Grant Community School ,86,84,87,84,91,84,85,86,84,139,142,148,112,,2,,,,,,,,,"1,314"
+ 60I , Charter , Community School of Davidson ,107,116,112,120,114,97,102,107,127,143,138,137,137,,2,,,,,,,,,"1,559"
+ 60J , Charter , Socrates Academy ,104,103,103,101,100,103,78,73,87,49,22,22,,,,,,,,,,,,945
+ 60K , Charter , Charlotte Secondary School ,,,,,,,19,17,22,34,31,24,19,,,,,,,,,,,166
+ 60L , Charter , KIPP: Charlotte ,92,79,108,105,107,100,106,98,88,,,,,,,,,,,,,,,883
+ 60M , Charter , Corvian Community School ,84,81,85,88,90,96,97,100,101,124,109,109,95,,,,,,,,,,,"1,259"
+ 60N , Charter , Aristotle Preparatory Academy ,12,26,20,18,9,21,15,,,,,,,,,,,,,,,,,121
+ 60S , Charter , Bradford Preparatory School ,96,107,108,118,122,133,125,129,116,136,121,108,100,,,,,,,,,,,"1,519"
+ 60U , Charter , Commonwealth High School ,,,,,,,,,,71,100,90,85,,,,,,,,,,,346
+ 60Y , Charter , Pioneer Springs Community School ,51,47,51,51,45,46,45,49,51,35,32,33,18,,,,,,,,,,,554
+ 61J , Charter , Lakeside Charter Academy ,51,40,31,34,24,18,21,17,20,,,,,,,,,,,,,,,256
+ 61K , Charter , United Community School ,33,36,33,34,29,20,21,17,18,,,,,,,,,,,,,,,241
+ 61L , Charter , Stewart Creek High School ,,,,,,,,,,79,117,93,49,,,,,,,,,,,338
+ 61M , Charter , Charlotte Lab School ,105,95,89,79,82,82,56,68,60,70,81,45,56,,,,,,,,,,,968
+ 61N , Charter , Queen City STEM School ,87,106,84,88,63,56,51,49,38,23,12,8,12,,,,,,,,,,,677
+ 61P , Charter , VERITAS Community School ,15,17,13,20,15,12,17,20,21,,,,,,,,,,,,,,,150
+ 61Q , Charter , Mallard Creek STEM Academy ,100,110,112,106,116,107,108,99,80,,,,,,,,,,,,,,,938
+ 61R , Charter , Matthews Charter Academy ,95,83,83,88,82,81,83,83,83,,,,,,,,,,,,,,,761
+ 61S , Charter , Unity Classical Charter School ,113,117,112,84,85,88,45,50,43,,,,,,,,,,,,,,,737
+ 61T , Charter , Movement Charter School ,115,98,113,90,73,57,60,55,57,,,,,,,,,,,,,,,718
+ 61V , Charter , Bonnie Cone Classical Academy ,77,99,77,97,71,57,49,,,,,,,,,,,,,,,,,527
+ 61W , Charter , East Voyager Academy ,22,20,21,17,20,16,21,13,12,,,,,,,,,,,,,,,162
+ 61X , Charter , Jackson Day School ,76,86,65,74,69,82,92,72,72,66,49,43,44,,,,,,,,,,,890
+ 61Y , Charter , Steele Creek Preparatory Academy ,51,49,48,50,41,38,31,38,25,,,,,,,,,,,,,,,371
+ 62A , Charter , Tillery Charter Academy ,33,30,42,23,33,32,18,,,,,,,,,,,,,,,,,211
+ 62J , Charter , Southwest Charlotte STEM Academy ,90,86,93,81,82,92,122,87,82,,,,,,,,,,,,,,,815
+ 62K , Charter , Movement School Eastland ,118,111,109,88,48,,,,,,,,,,,,,,,,,,,474
+ 62L , Charter , Telra Institute ,69,71,75,74,72,63,56,27,22,,,,,,,,,,,,,,,529
+ 62M , Charter , Bonnie Cone Leadership Academy ,114,73,76,102,82,73,82,135,126,111,40,14,,,,,,,,,,,,"1,028"
+ 62N , Charter , Aspire Trade High School ,,,,,,,,,,108,76,,,,,,,,,,,,,184
+ 62P , Charter , Movement School Southwest ,79,77,51,,,,,,,,,,,,,,,,,,,,,207
+ 62R , Charter , Movement School Northwest ,80,25,,,,,,,,,,,,,,,,,,,,,,105
+ 63A , Charter , The Academy of Moore County ,89,78,88,83,74,49,,,,,,,,,,,,,,,,,,461
+ 63B , Charter , Sandhills Theatre Arts Renaiss ,83,92,99,85,98,101,97,94,91,,,6,16,,,,,,,,,,,862
+ 63C , Charter , Moore Montessori Community School ,53,38,42,29,17,20,13,16,,,,,,,,,,,,,,,,228
+ 64A , Charter , Rocky Mount Preparatory ,70,63,66,68,63,76,63,69,75,67,61,51,49,,,,,,,,,,,841
+ 65A , Charter , Cape Fear Center for Inquiry ,40,40,44,43,46,48,48,47,46,,,,,,,,,,,,,,,402
+ 65B , Charter , Wilmington Preparatory Academy ,11,13,13,9,11,9,7,9,10,,,,,,,,,,,,,,,92
+ 65C , Charter , Classical Charter Schools of Wilmington ,24,25,20,20,24,22,,,,,,,,,,,,,,,,,,135
+ 65D , Charter , Island Montessori Charter ,27,26,24,25,24,25,23,21,19,,,,,,,,,,,,,,,214
+ 65F , Charter , American Leadership Academy-Coastal ,88,82,94,100,83,77,84,89,90,49,17,,,,,,,,,,,,,853
+ 65G , Charter , Girls Leadership Academy of Wilmington ,,,,,,,59,58,71,38,46,25,33,,,,,,,,,,,330
+ 65H , Charter , Wilmington School of the Arts ,42,44,43,43,15,24,9,,,,,,,,,,,,,,,,,220
+ 66A , Charter , KIPP Gaston College Preparatory ,63,90,97,93,81,102,88,94,85,107,91,94,65,,,,,,,,,,,"1,150"
+ 67B , Charter , Z.E.C.A. School of Arts and Technology ,16,11,13,14,18,8,7,8,8,,,,,,,,,,,,,,,103
+ 68A , Charter , Eno River Academy ,41,40,39,40,41,41,61,63,63,92,94,94,88,,,,,,,,,,,797
+ 68C , Charter , The Expedition School ,40,41,41,40,40,43,44,42,29,,,,,,,,,,,,,,,360
+ 69A , Charter , Arapahoe Charter School ,29,37,46,32,40,37,43,44,50,37,28,30,13,,,,,,,,,,,466
+ 70A , Charter , Northeast Academy of Aerospace & AdvTech ,,,,,,99,98,97,98,98,92,87,76,,,,,,,,,,,745
+ 73A , Charter , Bethel Hill Charter ,62,60,60,56,56,55,,,,,,,,,,,,,,,,,,349
+ 73B , Charter , Roxboro Community School ,,,,,,,113,106,109,113,91,85,83,,,,,,,,,,,700
+ 74C , Charter , Winterville Charter Academy ,70,83,71,72,52,58,55,67,59,,,,,,,,,,,,,,,587
+ 76A , Charter , Uwharrie Charter Academy ,107,112,105,116,115,145,201,205,197,229,210,197,154,,,,,,,,,,,"2,093"
+ 78A , Charter , CIS Academy ,,,,,,,34,40,36,,,,,,,,,,,,,,,110
+ 78B , Charter , Southeastern Academy ,20,23,23,25,24,25,25,24,26,,,,,,,,,,,,,,,215
+ 78C , Charter , Old Main Stream ,63,56,44,39,46,47,43,,,,,,,,,,,,,,,,,338
+ 79A , Charter , Bethany Community School ,,,,,,,79,99,98,98,96,82,51,,,,,,,,,,,603
+ 79C , Charter , Legacy Classical ,37,24,14,21,23,,,,,,,,,,,,,,,,,,,119
+ 80C , Charter , Faith Academy ,80,94,85,84,71,79,77,83,78,42,,,,,,,,,,,,,,773
+ 81A , Charter , Thomas Jefferson Classical Academy ,105,110,113,106,114,106,119,120,115,118,98,88,77,,,,,,,,,,,"1,389"
+ 81B , Charter , Lake Lure Classical Academy ,28,35,29,38,29,34,26,38,48,46,32,35,22,,,,,,,,,,,440
+ 84B , Charter , Gray Stone Day School ,,,,,,,105,121,128,105,109,94,89,,,,,,,,,,,751
+ 86T , Charter , Millennium Charter Academy ,60,62,52,61,56,59,58,59,56,39,29,33,26,,,,,,,,,,,650
+ 87A , Charter , Mountain Discovery Charter School ,22,29,20,20,21,22,21,18,16,,,,,,,,,,,,,,,189
+ 88A , Charter , Brevard Academy ,44,43,45,50,45,42,50,47,41,,,,,,,,,,,,,,,407
+ 90A , Charter , Union Academy Charter School ,157,168,171,172,177,179,188,175,173,178,163,140,131,,1,,,,,,,,,"2,173"
+ 90B , Charter , Union Day School ,68,65,65,61,70,62,81,59,64,30,20,,,,,,,,,,,,,645
+ 90C , Charter , Union Preparatory Academy at Indian Trai ,118,115,113,119,122,121,117,114,111,69,39,,,,,,,,,,,,,"1,158"
+ 90D , Charter , Monroe Charter Academy ,34,19,19,19,24,14,25,,,,,,,,,,,,,,,,,154
+ 90F , Charter , Apprentice Academy HS of NC ,,,,,,,,40,25,31,38,48,31,,,,,,,,,,,213
+ 91A , Charter , Vance Charter School ,60,64,61,63,69,69,74,78,74,84,83,84,81,,,,,,,,,,,944
+ 91B , Charter , Henderson Collegiate ,101,100,96,99,86,101,104,103,104,107,98,87,91,,,,,,,,,,,"1,277"
+ 92B , Charter , The Exploris School ,30,35,38,38,39,37,73,75,75,,,,,,,,,,,,,,,440
+ 92D , Charter , Magellan Charter ,,,,68,69,68,69,68,67,,,,,,,,,,,,,,,409
+ 92E , Charter , Sterling Montessori Academy ,68,77,80,79,70,73,52,65,63,,,,,,,,,,,,,,,627
+ 92F , Charter , Franklin Academy ,120,120,121,124,125,125,132,131,131,136,139,119,116,,,,,,,,,,,"1,639"
+ 92G , Charter , East Wake Academy ,79,82,87,97,101,98,97,97,99,104,105,97,88,,,,,,,,,,,"1,231"
+ 92K , Charter , Raleigh Charter High School ,,,,,,,,,,146,141,129,138,,,,,,,,,,,554
+ 92M , Charter , PreEminent Charter School ,91,84,79,77,77,70,68,71,73,,,,,,,,,,,,,,,690
+ 92N , Charter , Quest Academy ,16,15,16,17,16,16,16,16,16,,,,,,,,,,,,,,,144
+ 92P , Charter , Southern Wake Academy ,,,,,,,63,86,90,80,87,68,63,,,,,,,,,,,537
+ 92R , Charter , Casa Esperanza Montessori ,120,97,92,78,70,62,35,45,42,,,,,,,,,,,,,,,641
+ 92S , Charter , Endeavor Charter ,79,79,81,81,84,81,99,98,100,,,,,,,,,,,,,,,782
+ 92T , Charter , Triangle Math and Science Academy ,105,109,107,106,105,107,107,106,107,100,105,92,68,,,,,,,,,,,"1,324"
+ 92U , Charter , Longleaf School of the Arts ,,,,,,,,,,107,110,92,99,,,,,,,,,,,408
+ 92V , Charter , Wake Forest Charter Academy ,76,81,80,83,86,82,87,86,71,,,,,,,,,,,,,,,732
+ 92W , Charter , Cardinal Charter ,97,92,69,90,72,84,77,66,54,,,,,,,,,,,,,,,701
+ 92Y , Charter , Envision Science Academy ,71,80,84,84,86,87,86,83,80,,,,,,,,,,,,,,,741
+ 93A , Charter , Haliwa-Saponi Tribal School ,8,8,4,3,11,11,11,19,6,18,17,13,13,,,,,,,,,,,142
+ 93J , Charter , RISE Southeast Raleigh Charter School ,52,59,55,56,53,53,47,48,47,,,,,,,,,,,,,,,470
+ 93L , Charter , Central Wake Charter High School ,,,,,,,,,,116,67,38,42,,,,,,,,,,,263
+ 93M , Charter , Peak Charter Academy ,86,90,86,84,88,85,85,83,82,,,,,,,,,,,,,,,769
+ 93N , Charter , Pine Springs Preparatory Academy ,123,124,124,126,124,124,173,174,168,,,,,,,,,,,,,,,"1,260"
+ 93P , Charter , Rolesville Charter Academy ,103,84,102,87,84,83,76,60,59,,,,,,,,,,,,,,,738
+ 93Q , Charter , Carolina Charter Academy: CFA ,119,99,100,96,97,70,73,75,70,,,,,,,,,,,,,,,799
+ 93R , Charter , Raleigh Oak Charter School ,40,42,36,31,33,30,28,19,10,,,,,,,,,,,,,,,269
+ 93T , Charter , Cardinal Charter Academy at Wendell Falls ,80,93,72,79,53,41,71,57,42,,,,,,,,,,,,,,,588
+ 93V , Charter , Doral Academy North Carolina ,111,102,97,48,46,48,,,,,,,,,,,,,,,,,,452
+ 93Y , Charter , The Math and Science Academy (TMSA) Apex ,42,109,109,107,103,106,107,,,,,,,,,,,,,,,,,683
+ 94A , Charter , Pocosin Innovative Charter ,36,37,26,33,29,31,17,31,18,,,,,,,,,,,,,,,258
+ 95A , Charter , Two Rivers Community School ,15,21,22,20,20,10,22,10,21,,,,,,,,,,,,,,,161
+ 96C , Charter , Dillard Academy ,26,29,30,28,32,27,25,24,24,,,,,,,,,,,,,,,245
+ 96F , Charter , Wayne Preparatory ,54,65,75,64,76,83,77,78,83,79,65,55,46,,1,,,,,,,,,901
+ 96G , Charter , Wayne STEM Preparatory ,61,41,36,34,,,,,,,,,,,,,,,,,,,,172
+ 98A , Charter , Sallie B Howard School ,95,97,107,110,114,138,105,109,97,69,79,56,28,,,,,,,,,,,"1,204"
+ 98B , Charter , Wilson Preparatory Academy ,58,44,68,52,60,58,54,70,66,62,50,37,43,,,,,,,,,,,722
+ 34Z , Charter , Appalachian State U Academy Middle Fork , 52 , 45 , 55 , 37 , 45 , 44 ,,,,,,,,,,,,,,,,,,278
+ 41Z , Charter , Aggie Academy ,,,, 27 , 30 , 24 ,,,,,,,,,,,,,,,,,,81
+ 50Z , Charter , Catamount School ,,,,,,,18,16,23,,,,,,,,,,,,,,,57
+ 60Z , Charter , Niner University Elementary School , 24 , 21 , 21 , 31 , 17 , 16 ,,,,,,,,,,,,,,,,,,130
+ 65Z , Charter , D.C. Virgo Preparatory Academy , 17 , 23 , 17 , 22 , 18 , 19 ,35,26,11,,,,,,,,,,,,,,,188
+ 73Z , Charter , Carolina Community Academy , 37 , 30 ,,,,,,,,,,,,,,,,,,,,,,67
+ 74Z , Charter , East Carolina Community School , 13 , 19 , 19 , 24 , 22 , 19 ,,,,,,,,,,,,,,,,,,116
+ 86Z , Charter , Appalachian State Univ Academy at Elkin ,,, 22 , 17 , 34 ,,,,,,,,,,,,,,,,,,,73
+ 94Z , Charter , Northeast Regional School - Biotech/Agri ,,,,,,,,,,30,25,34,26,7,,,,,,,,,,122
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,
