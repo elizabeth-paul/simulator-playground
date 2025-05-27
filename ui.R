@@ -10,11 +10,11 @@ library(markdown)
 
 
 bw_primary <- c("#6D1E4A", # 1 plum
-                "#007786", # 2 teal
-                "#0D525A", # 3 dark green
-                "#212B46", # 4 navy
+                "#365b6d", # 2 teal
+                "#365b6d", # 3 dark green
+                "#365b6d", # 4 navy
                 "#5A6675", # 5 grey
-                "#F0DEC1") # 6 cream
+                "#fff8ed") # 6 cream
 
 bw_secondary <- c("#FFC762", # 1 yellow
                   "#FFB653", # 2 orange
@@ -22,7 +22,7 @@ bw_secondary <- c("#FFC762", # 1 yellow
                   "#2E1A4A", # 4 deep purple
                   "#7EA2D1", # 5 soft blue
                   "#CAD3FB", # 6 lavender
-                  "#9CD4EA", # 7 sky
+                  "#365b6d", # 7 sky
                   "#FFA497") # 8 peach
 
 
@@ -39,20 +39,20 @@ input_sidebar <- sidebar(
     # multiple = FALSE,
     id = "sidebarAccordion",
     
-    accordion_panel(
-      
-      "Scenario Options",
-      selectInput("scenario",
-                  label = "Update inputs to match following scenarios:",
-                  choices = c("Default",
-                              "Scenario 1: Higher Poverty Weights",
-                              "Scenario 2: Higher Base Amount",
-                              "Scenario 3: Higher SPED and EL Weights"),
-                  selected = "Default") |> 
-        tooltip("These scenarios update values for each input to project a particular scenario."),
-      actionButton("apply_scenario", "Apply Scenario"),
-      
-    ),
+    # accordion_panel(
+    #   
+    #   "Scenario Options",
+    #   selectInput("scenario",
+    #               label = "Update inputs to match following scenarios:",
+    #               choices = c("Default",
+    #                           "Scenario 1: Higher Poverty Weights",
+    #                           "Scenario 2: Higher Base Amount",
+    #                           "Scenario 3: Higher SPED and EL Weights"),
+    #               selected = "Default") |> 
+    #     tooltip("These scenarios update values for each input to project a particular scenario."),
+    #   actionButton("apply_scenario", "Apply Scenario"),
+    #   
+    # ),
     
     
     
@@ -94,7 +94,7 @@ input_sidebar <- sidebar(
     ),
     
     accordion_panel(
-      "Special Ed. Weights",
+      "Exceptional Children Weights",
       sliderInput("sped_weight_tier_i", 
                   label = "Tier 1", 
                   min = 0, max = 50, 
@@ -119,7 +119,7 @@ input_sidebar <- sidebar(
                   post = "%") |> 
         tooltip("Select Tier III special education weight"),
       accordion_panel(
-        "Special Ed Tiers",
+        "Exceptional Child Tiers",
         open = FALSE,
         sliderInput("sld_tier",
                     label = "Specific Learning Disability",
@@ -249,19 +249,32 @@ input_sidebar <- sidebar(
       
     ),
     
+    # accordion_panel(
+    #   "Charter Weight",
+    #   sliderInput("charter_weight",
+    #               label = "Charter Weight",
+    #               min = 0, max = 10,
+    #               step = 1,
+    #               value = 2,
+    #               post = "%") |> 
+    #     tooltip("Select charter weight")
+    #   
+    #   
+    # )
+    
+
     accordion_panel(
-      "Charter Weight",
-      sliderInput("charter_weight",
-                  label = "Charter Weight",
+      "Gifted Weight",
+      sliderInput("gifted_weight",
+                  label = "Gifted Weight",
                   min = 0, max = 10,
                   step = 1,
                   value = 2,
-                  post = "%") |> 
-        tooltip("Select range of charter weight")
-      
-      
+                  post = "%") |>
+        tooltip("Select gifted weight")
+
+
     )
-    
     
   ),
 
@@ -348,26 +361,31 @@ shinyUI({
   page_navbar(
     title = div(
     style = "display: flex; align-items: center; position: relative; top: -3px; margin-right: 30px;", # Adjust top value as needed
-    img(src = "primary_full-color.png", height = "30px", style = "margin-right: 10px;"),
+    img(src = "psf_full_color.png", height = "40px", style = "margin-right: 10px;"),
     "School Funding Formula Simulator"
   ),
     # title = "School Funding Formula Simulator",
     theme = bs_theme() |> 
       bs_add_rules(
         "
+        * {
+          --bs-nav-link-color: #365b6d !important;
+          --bs-link-hover-color: #5a879e !important;
+          --bs-dropdown-link-active-bg: #365b6d !important;
+        }
         .nav-pills .nav-link {
-          color:#212B46;          /* Text color when unselected */
+          color:#365b6d;          /* Text color when unselected */
           background-color: #fff;  /* Background when unselected */
         }
         
         .nav-pills .nav-link.active {
           color: #fff;             /* Text color when selected */
-          background-color: #212B46;  /* Background when selected */
+          background-color: #365b6d;  /* Background when selected */
         }
         
         .nav-pills .nav-link:hover {
           background-color: #e9ecef;
-          color: #212B46;
+          color: #365b6d;
         }
         
          .nav-pane.active {
@@ -412,7 +430,7 @@ shinyUI({
                 nav_panel(
                   "District Poverty % vs. Model PP",
                   plotlyOutput("plt_ed_comp") |> 
-                    tooltip("Green points illustrate represent funding for districts in the modeled scenario; grey points illustrate current district funding.")
+                    tooltip("Blue points represent funding for districts in the modeled scenario; grey points illustrate current district funding.")
                 ),
                 nav_panel(
                   "Current PP vs. Model PP",
@@ -493,17 +511,14 @@ shinyUI({
       )
     ),
     
-    nav_panel(
-      "Notes",
-      layout_columns(
-        col_widths = c(8, 4),  # First column takes 6/12 (half), second takes 6/12
-        includeMarkdown("data_notes.md"),
-        # The second column can be empty or contain something else
-        NULL
-      )
-      
-      
+  nav_panel(
+    "Notes",
+    layout_columns(
+      col_widths = c(8, 4),
+      uiOutput("markdown_content"),
+      NULL
     )
+  )
     
   
   )

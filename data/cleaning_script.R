@@ -278,7 +278,7 @@ ppe_clean_traditional <- ppe_raw_traditional |>
          total_ppe = "total ppe") |>
   # Convert LEA to charcters to bind with charters
   mutate(dist_id = as.character(dist_id),
-         current_pp = state_ppe + local_ppe) |>
+         current_pp = state_ppe) |>
   select(dist_id, district, current_pp)
 
 # Clean Charter PPE
@@ -291,7 +291,7 @@ ppe_clean_charter <- ppe_raw_charter |>
          local_ppe = "local ppe",
          total_ppe = "total ppe") |>
   mutate(district = str_to_title(district),
-         current_pp = state_ppe + local_ppe) |>
+         current_pp = state_ppe) |>
   select(dist_id, district, current_pp)
 
 
@@ -343,6 +343,8 @@ traditional_lea_23_24 <- lea_data_23_24_clean |>
 
 # Save data 
 write_csv(lea_data_23_24_clean, "data/lea_data_23_24.csv")
+
+# Currently need to manually move these to the correct folder
 saveRDS(lea_data_23_24_clean, "lea_data_23_24_clean.rds")
 saveRDS(traditional_lea_23_24, "traditional_lea_23_24.rds")
 

@@ -13,7 +13,7 @@ library(markdown)
 
 bw_primary <- c("#6D1E4A", # 1 plum
                 "#007786", # 2 teal
-                "#0D525A", # 3 dark green
+                "#355b6d", # 3 dark green
                 "#212B46", # 4 navy
                 "#5A6675", # 5 grey
                 "#F0DEC1") # 6 cream
@@ -54,7 +54,7 @@ observeEvent(input$apply_scenario, {
     updateSliderInput(session, "rural_weight", value = 5)
     updateSliderInput(session, "rural_elig", value = c(1, 15))
     
-    updateSliderInput(session, "charter_weight", value = 2)
+ #   updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 1: Higher Poverty Weights") {
     updateSliderInput(session, "base_amt", value = 8000)
@@ -74,7 +74,7 @@ observeEvent(input$apply_scenario, {
     updateSliderInput(session, "rural_weight", value = 5)
     updateSliderInput(session, "rural_elig", value = c(1, 15))
     
-    updateSliderInput(session, "charter_weight", value = 2)
+#    updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 2: Higher Base Amount") {
     updateSliderInput(session, "base_amt", value = 9000)
@@ -94,7 +94,7 @@ observeEvent(input$apply_scenario, {
     updateSliderInput(session, "rural_weight", value = 5)
     updateSliderInput(session, "rural_elig", value = c(1, 15))
     
-    updateSliderInput(session, "charter_weight", value = 2)
+#    updateSliderInput(session, "charter_weight", value = 2)
     
   } else if (input$scenario == "Scenario 3: Higher SPED and EL Weights") {
     updateSliderInput(session, "base_amt", value = 8000)
@@ -114,7 +114,7 @@ observeEvent(input$apply_scenario, {
     updateSliderInput(session, "rural_weight", value = 5)
     updateSliderInput(session, "rural_elig", value = c(1, 15))
     
-    updateSliderInput(session, "charter_weight", value = 2)
+#    updateSliderInput(session, "charter_weight", value = 2)
     
   } 
 
@@ -217,13 +217,17 @@ observeEvent(input$apply_scenario, {
                                             (input$rural_elig[2] - input$rural_elig[1])),
              rural_net_wt = rural_wt * rural_wt_adj,
              
-             charter_wt = input$charter_weight / 100,
+             gifted_wt = input$gifted_weight / 100,
              
-             charter_cat = case_when(charter_status == "Charter" ~ 1,
-                                        TRUE ~ 0),
+      #       charter_wt = input$charter_weight / 100,
+            
+      #       charter_cat = case_when(charter_status == "Charter" ~ 1,
+      #                                  TRUE ~ 0),
              # hard-code Montgomery County conversion charter ADM
-             charter_adm = case_when(dist_id == "051" ~ 1538.85,
-                                     TRUE ~ adm * charter_cat)
+      #       charter_adm = case_when(dist_id == "051" ~ 1538.85,
+      #                               TRUE ~ adm * charter_cat),
+             
+             
              
              ) |> 
       # calculate weighted funding amounts
@@ -266,14 +270,19 @@ observeEvent(input$apply_scenario, {
                                             TRUE ~ adm * weight_base * rural_net_wt),
              rural_weight_diff = rural_weight_total,
              
-             charter_weight_total_raw = charter_adm * charter_wt * weight_base,
+#             charter_weight_total_raw = charter_adm * charter_wt * weight_base,
              
-             charter_weight_total = charter_weight_total_raw,
+#             charter_weight_total = charter_weight_total_raw,
+             
+             gifted_weight_total_raw = aig_enroll * gifted_wt * weight_base,
+             
+             gifted_weight_total = gifted_weight_total_raw,
              
 
              
              weight_total = poverty_weight_total + sped_weight_total +
-               el_weight_total +  rural_weight_total + charter_weight_total,
+               el_weight_total +  rural_weight_total + #charter_weight_total + 
+               gifted_weight_total,
              weight_total_pp = weight_total / adm,
              formula_total = base_total + weight_total,
              formula_pp = formula_total / adm,
@@ -323,16 +332,22 @@ observeEvent(input$apply_scenario, {
       elconc_weight_total = sum(el_weight_conc, na.rm = T),
       eltotal_weight_total = sum(el_weight_total, na.rm = T),
 
-      charter_base = mean(weight_base, na.rm = T),
-      charter_weight_pct = mean(charter_wt, na.rm = T),
-      charter_adm = sum(charter_adm, na.rm = T),
-      charter_weight_total = sum(charter_weight_total, na.rm = T),
+#      charter_base = mean(weight_base, na.rm = T),
+#      charter_weight_pct = mean(charter_wt, na.rm = T),
+#      charter_adm = sum(charter_adm, na.rm = T),
+#      charter_weight_total = sum(charter_weight_total, na.rm = T),
+      
+      gifted_base = mean(weight_base, na.rm = T),
+      gifted_weight_pct = mean(gifted_wt, na.rm = T),
+      gifted_adm = sum(aig_enroll, na.rm = T),
+      gifted_weight_total = sum(gifted_weight_total, na.rm = T),
       
       total_current = sum(current_total, na.rm = T)
                 
       ) |>  
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
-               eltotal_weight_total + charter_weight_total,
+               eltotal_weight_total + #charter_weight_total + 
+               gifted_weight_total,
             
              total_diff = total_weight_total - total_current
       ) |> 
@@ -360,7 +375,7 @@ observeEvent(input$apply_scenario, {
              `Difference, Model vs. Current` = diff)
     
   })
-  
+
   output$tbl_state_toplines <- renderDataTable({
     
     state_summary() |> 
@@ -489,17 +504,22 @@ observeEvent(input$apply_scenario, {
 
 
       
-      charter_base = mean(weight_base, na.rm = T),
-      charter_weight_pct = mean(charter_wt, na.rm = T),
-      charter_adm = sum(charter_adm, na.rm = T),
-      charter_weight_total = sum(charter_weight_total, na.rm = T),
+#      charter_base = mean(weight_base, na.rm = T),
+#      charter_weight_pct = mean(charter_wt, na.rm = T),
+#      charter_adm = sum(charter_adm, na.rm = T),
+#      charter_weight_total = sum(charter_weight_total, na.rm = T),
 
+      gifted_base = mean(weight_base, na.rm = T),
+      gifted_weight_pct = mean(gifted_wt, na.rm = T),
+      gifted_adm = sum(aig_enroll, na.rm = T),
+      gifted_weight_total = sum(gifted_weight_total, na.rm = T),
       
       total_current = sum(current_total, na.rm = T)
       
     ) |>  
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
-               eltotal_weight_total + charter_weight_total,
+               eltotal_weight_total + #charter_weight_total + 
+               gifted_weight_total,
              
              total_diff = total_weight_total - total_current
       ) |> 
@@ -908,18 +928,35 @@ observeEvent(input$apply_scenario, {
   # right sidebar box data ----
   
   output$diff_total <- reactive({
-    dollar(demo_model() |> 
-             summarise(total_diff = sum(weight_total - current_total, na.rm = TRUE)) |> 
-             pull(total_diff))
+    model_summary <- demo_model() |> 
+      summarise(
+        total_weight = sum(base_total, na.rm = TRUE) + 
+          sum(poverty_weight_total, na.rm = TRUE) + 
+          sum(sped_weight_total, na.rm = TRUE) +
+          sum(el_weight_total, na.rm = TRUE) + 
+        #  sum(charter_weight_total, na.rm = TRUE),
+          sum(gifted_weight_total, na.rm = TRUE),
+        total_current = sum(current_total, na.rm = TRUE)
+      )
+    
+    dollar(model_summary$total_weight - model_summary$total_current)
   })
   
   
   output$diff_pp <- reactive({
-    dollar(demo_model() |> 
-             summarise(total_diff = sum(weight_total - current_total, na.rm = TRUE),
-                       adm = sum(adm)) |> 
-             mutate(pp_diff = total_diff / adm) |> 
-             pull(pp_diff))
+    model_summary <- demo_model() |> 
+      summarise(
+        total_weight = sum(base_total, na.rm = TRUE) + 
+          sum(poverty_weight_total, na.rm = TRUE) + 
+          sum(sped_weight_total, na.rm = TRUE) +
+          sum(el_weight_total, na.rm = TRUE) + 
+         # sum(charter_weight_total, na.rm = TRUE),
+          sum(gifted_weight_total, na.rm = TRUE),
+        total_current = sum(current_total, na.rm = TRUE),
+        adm = sum(adm, na.rm = TRUE)
+      )
+    
+    dollar(with(model_summary, (total_weight - total_current) / adm))
   })
   
   # download full table -----
@@ -946,6 +983,12 @@ observeEvent(input$apply_scenario, {
     
   )
 
+  # Refresh notes tab
+  output$markdown_content <- renderUI({
+    # This forces the content to be re-read when the file changes
+    markdown_file <- file.mtime("data_notes.md")
+    HTML(markdown::markdownToHTML(text = readLines("data_notes.md", warn = FALSE), fragment.only = TRUE))
+  })
   
 } # close server
 
