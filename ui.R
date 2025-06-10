@@ -73,15 +73,15 @@ input_sidebar <- sidebar(
       "Economically Disadvantaged Weight",
       sliderInput("ed_weight",
                   label = "Economically Disadvantaged Weight",
-                  min = 0, max = 40, 
+                  min = 0, max = 150, 
                   step = 5, value = 25,
                   post = "%") |> 
         tooltip("Select weight for economically disadvantaged"),
       
       sliderInput("conc_pov_weight", 
                   label = "Max. Concentrated Poverty Weight", 
-                  min = 0, max = 10,
-                  step = .25, value = 5,
+                  min = 0, max = 150,
+                  step = 5, value = 5,
                   post = "%") |> 
         tooltip("Select concentrated poverty weight"),
       
@@ -97,7 +97,7 @@ input_sidebar <- sidebar(
       "Exceptional Children Weights",
       sliderInput("sped_weight_tier_i", 
                   label = "Tier 1", 
-                  min = 0, max = 50, 
+                  min = 0, max = 300, 
                   step = 5, 
                   value = 20,
                   post = "%") |> 
@@ -105,7 +105,7 @@ input_sidebar <- sidebar(
       
       sliderInput("sped_weight_tier_ii", 
                   label = "Tier 2", 
-                  min = 0, max = 100, 
+                  min = 0, max = 300, 
                   step = 5, 
                   value = 50,
                   post = "%") |> 
@@ -113,7 +113,7 @@ input_sidebar <- sidebar(
       
       sliderInput("sped_weight_tier_iii", 
                   label = "Tier 3", 
-                  min = 0, max = 150, 
+                  min = 0, max = 300, 
                   step = 5, 
                   value = 100,
                   post = "%") |> 
@@ -184,7 +184,7 @@ input_sidebar <- sidebar(
       "English Learner Weight",
 
       sliderInput("el_weight", label = "EL weight", 
-                  min = 0, max = 30, step = 5, 
+                  min = 0, max = 50, step = 5, 
                   value = 15, post = "%") |> 
         tooltip("Select EL weight"),
       
@@ -195,7 +195,7 @@ input_sidebar <- sidebar(
       conditionalPanel(condition = "input.conc_el_type == 'Tiered'",
                        sliderInput("conc_el_weight_tiered", 
                                    label = "Max. Concentrated EL Weight", 
-                                   min = 0, max = 10,
+                                   min = 0, max = 50,
                                    step = 1, value = 3,
                                    post = "%") |> 
                          tooltip("Select concentrated EL weight"),
@@ -211,7 +211,7 @@ input_sidebar <- sidebar(
       conditionalPanel(condition = "input.conc_el_type == 'Escalating'",
                        sliderInput("conc_el_weight", 
                                    label = "Max. Concentrated EL Weight", 
-                                   min = 0, max = 10,
+                                   min = 0, max = 50,
                                    step = 1, value = 4,
                                    post = "%") |> 
                          tooltip("Select concentrated EL weight"),
@@ -235,8 +235,8 @@ input_sidebar <- sidebar(
       
       sliderInput("rural_weight",
                   label = "Rural Weight",
-                  min = 0, max = 10,
-                  step = 1,
+                  min = 0, max = 50,
+                  step = 5,
                   value = 5,
                   post = "%") |> 
         tooltip("Select range of maximum rural weight"),
@@ -267,8 +267,8 @@ input_sidebar <- sidebar(
       "Gifted Weight",
       sliderInput("gifted_weight",
                   label = "Gifted Weight",
-                  min = 0, max = 10,
-                  step = 1,
+                  min = 0, max = 50,
+                  step = 5,
                   value = 2,
                   post = "%") |>
         tooltip("Select gifted weight")
