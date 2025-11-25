@@ -240,7 +240,7 @@ observeEvent(input$apply_scenario, {
          s_per_sq_mi <= input$rural_elig_sqmi[1] ~ 1,
          TRUE ~ (input$rural_elig_sqmi[2] - s_per_sq_mi) / (input$rural_elig_sqmi[2] - input$rural_elig_sqmi[1])),
         rural_wt_enrl_adj = case_when(
-          type == "Charter" ~ 0,
+          type != "Traditional" ~ 0,
           adm > input$rural_elig_enrl[2] ~ 0,
           adm <= input$rural_elig_enrl[1] ~ 1,
           TRUE ~ (input$rural_elig_enrl[2] - adm) / (input$rural_elig_enrl[2] - input$rural_elig_enrl[1])
@@ -892,23 +892,33 @@ observeEvent(input$apply_scenario, {
   
   # rural weight plot ---------
   
-  sparse_wt_df <- reactive({
+  sparse_wt_sqmi_df <- reactive({
     
     tibble(s_per_sq_mi = 0:40) |> 
       mutate(sparse_wt = input$rural_weight / 100,
-             sparse_min = input$rural_elig[1],
-             sparse_max = input$rural_elig[2],
+             sparse_min = input$rural_elig_sqmi[1],
+             sparse_max = input$rural_elig_sqmi[2],
              sparse_adj = (sparse_max - s_per_sq_mi) / (sparse_max - sparse_min)) |> 
       mutate(sparse_wt_calc = case_when(s_per_sq_mi <= sparse_min ~ sparse_wt,
                                         s_per_sq_mi > sparse_max ~ 0,
-                                        TRUE ~ sparse_wt * sparse_adj))
-    
-    
+                                        TRUE ~ sparse_wt * sparse_adj))    
   })
-  
-  output$plt_rural <- renderPlotly({
+
+  sparse_wt_enrl_df <- reactive({
+    
+    tibble(adm = seq(from = 0, to = 5000, by = 100)) |> 
+      mutate(sparse_wt = input$rural_weight / 100,
+             sparse_min = input$rural_elig_enrl[1],
+             sparse_max = input$rural_elig_enrl[2],
+             sparse_adj = (sparse_max - adm) / (sparse_max - sparse_min)) |> 
+      mutate(sparse_wt_calc = case_when(adm <= sparse_min ~ sparse_wt,
+                                        adm > sparse_max ~ 0,
+                                        TRUE ~ sparse_wt * sparse_adj))    
+  })
+
+  rural_sqmi_plt <- reactive({
     ggplotly(
-      ggplot(sparse_wt_df()) + 
+      ggplot(sparse_wt_sqmi_df()) + 
         geom_line(aes(x = s_per_sq_mi, y = sparse_wt_calc, group = 1,
                       text = paste0("S Per Sq. Mi.: ", comma(s_per_sq_mi, accuracy = .1), "<br>",
                                     "Rural Weight: ", percent(sparse_wt_calc, accuracy = .1)))) + 
@@ -924,12 +934,44 @@ observeEvent(input$apply_scenario, {
         # geom_segment(aes(x = .75, xend = 1, y = .5, yend = .5) ,
         #              color = "grey45") +
         scale_x_continuous(limits = c(0,40)) +
-        scale_y_continuous(limits = c(0,(input$capacity_weight + 5) / 100 ), 
+        scale_y_continuous(limits = c(0,(input$rural_weight + 5) / 100 ), 
                            labels = label_percent()) +
         
         labs(x = "LEA Students Per Square Mile",
-             y = "Local Capacity Weight",
-             title = "Local Capacity Weight, LEAs w/ <40 S Per. Sq. Mi.)") +
+             y = "Local Rural Weight",
+             title = "Local Rural Weight, LEAs w/ <40 S Per. Sq. Mi.)") +
+        
+        theme_bw() +
+        theme(text = element_text(family = "Avenir"))
+      ,
+      tooltip = "text")
+    
+  })
+
+  rural_enrl_plt <- reactive({
+    ggplotly(
+      ggplot(sparse_wt_enrl_df()) + 
+        geom_line(aes(x = adm, y = sparse_wt_calc, group = 1,
+                      text = paste0("ADM: ", comma(adm, accuracy = 1), "<br>",
+                                    "Rural Weight: ", percent(sparse_wt_calc, accuracy = .1)))) + 
+        # geom_segment(aes(x = 0, 
+        #                  xend = sim_df()$conc_pov_min_pct, 
+        #                  y = sim_df()$ed_weight, 
+        #                  yend = sim_df()$ed_weight) ,
+        #              color = "red") +
+        # 
+        # geom_segment(aes(x = .5, xend = .75, y = .15, yend = .5) ,
+        #              color = "blue") +
+        # 
+        # geom_segment(aes(x = .75, xend = 1, y = .5, yend = .5) ,
+        #              color = "grey45") +
+        scale_x_continuous(limits = c(0, 5000)) +
+        scale_y_continuous(limits = c(0,(input$rural_weight + 5) / 100 ), 
+                           labels = label_percent()) +
+        
+        labs(x = "District ADM",
+             y = "Rural Weight",
+             title = "Rural Weight, Low-Enrollment Districts)") +
         
         theme_bw() +
         theme(text = element_text(family = "Avenir"))
@@ -938,7 +980,15 @@ observeEvent(input$apply_scenario, {
     
   })
   
-  output$plt_rural_hist <- renderPlotly({
+  output$plt_rural <- renderPlotly({
+    if(input$rural_type == "Sparsity") {
+      rural_sqmi_plt()
+    } else {
+      rural_enrl_plt()
+    }
+  })
+  
+  rural_sqmi_hist <- reactive({
     
     ggplotly(
       ggplot(demo_model()) +
@@ -957,6 +1007,37 @@ observeEvent(input$apply_scenario, {
              title = "District Sparsity, LEAs w/ <40 S Per. Sq. Mi.)") +
         theme(text = element_text(family = "Avenir")),
       tooltip = "text")
+  })
+
+  rural_enrl_hist <- reactive({
+    
+    ggplotly(
+      ggplot(demo_model() |> 
+        filter(type == "Traditional")
+    ) +
+        geom_histogram(aes(x = adm,
+                           text = paste0(district,
+                                         "<br>",
+                                         "ADM: ",
+                                         comma(adm, accuracy = 1)),
+        ),
+        binwidth = 200,
+        center = 100) +
+        scale_x_continuous(limits = c(0,5000)) +
+        theme_bw() +
+        labs(x = "District ADM",
+             y = "Number of Districts", 
+             title = "Districts w/ <5000 ADM)") +
+        theme(text = element_text(family = "Avenir")),
+      tooltip = "text")
+  })
+
+  output$plt_rural_hist <- renderPlotly({
+    if(input$rural_type == "Sparsity") {
+      rural_sqmi_hist()
+    } else {
+      rural_enrl_hist()
+    }
   })
   
   
