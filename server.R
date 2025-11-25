@@ -28,7 +28,7 @@ bw_secondary <- c("#FFC762", # 1 yellow
                   "#FFA497") # 8 peach
 
 # load dist data
-demo_dist <- read_rds("data/traditional_lea_23_24.rds") 
+demo_dist <- read_rds("data/nc_2425_data.rds") 
 
 
 # shiny server ---------
@@ -91,6 +91,7 @@ observeEvent(input$apply_scenario, {
     updateSliderInput(session, "conc_el_weight_tiered", value = 3)
     updateSliderInput(session, "conc_el_eligible_tier", value = 9)
     
+    updateRadioButtons(session, "rural_type", value = "Sparsity")
     updateSliderInput(session, "rural_weight", value = 5)
     updateSliderInput(session, "rural_elig", value = c(1, 15))
     
@@ -123,101 +124,135 @@ observeEvent(input$apply_scenario, {
 
   # calculate weighted funding -----------
   demo_model <- reactive({
+
+    # req(input$model_ld_tier, input$model_si_tier, input$model_oh_tier,
+    #     input$model_idmi_tier, input$model_au_tier, input$model_idmo_tier,
+    #     input$model_dd_tier, input$model_mu_tier, input$model_ed_tier,
+    #     input$model_hi_tier, input$model_oi_tier, input$model_vi_tier,
+    #     input$model_db_tier, input$model_df_tier, input$model_idse_tier,
+    #     input$model_tb_tier)
     
     demo_dist |> 
       
       # calculate weighted funding inputs
-      mutate(weight_base = input$base_amt,
-             ed_wt = input$ed_weight / 100, 
-             conc_pov_max = input$conc_pov_weight / 100 , 
-             conc_pov_elig_min = input$conc_pov_eligible[1] / 100,
-             conc_pov_elig_max = input$conc_pov_eligible[2] / 100,
-             conc_pov_adj = case_when(ed_pct <= conc_pov_elig_min ~ 0,
-                                      ed_pct >= conc_pov_elig_max ~ 1,
-                                      TRUE ~ (ed_pct - conc_pov_elig_min) / 
-                                        (conc_pov_elig_max - conc_pov_elig_min)
-                                      
-             ),
-             conc_pov_net_wt = conc_pov_max * conc_pov_adj,
-             sped_tier_i_wt = input$sped_weight_tier_i / 100, 
-             sped_tier_ii_wt =input$sped_weight_tier_ii / 100,
-             sped_tier_iii_wt = input$sped_weight_tier_iii / 100, 
-             sped_tier_i_adm = case_when(input$sld_tier == 1 ~ swd_sld, TRUE ~ 0) +
-               case_when(input$sli_tier == 1 ~ swd_sli, TRUE ~ 0) +
-               case_when(input$ohi_tier == 1 ~ swd_ohi, TRUE ~ 0) +
-               case_when(input$aut_tier == 1 ~ swd_aut, TRUE ~ 0) +
-               case_when(input$id_tier == 1 ~ swd_id, TRUE ~ 0) +
-               case_when(input$dd_tier == 1 ~ swd_dd, TRUE ~ 0) +
-               case_when(input$md_tier == 1 ~ swd_md, TRUE ~ 0) +
-               case_when(input$ed_tier == 1 ~ swd_ed, TRUE ~ 0) +
-               case_when(input$hi_tier == 1 ~ swd_hi, TRUE ~ 0) +
-               case_when(input$oi_tier == 1 ~ swd_oi, TRUE ~ 0) +
-               case_when(input$vi_tier == 1 ~ swd_vi, TRUE ~ 0) +
-               case_when(input$db_tier == 1 ~ swd_db, TRUE ~ 0) +
-               case_when(input$tbi_tier == 1 ~ swd_tbi, TRUE ~ 0) , 
-             sped_tier_ii_adm = case_when(input$sld_tier == 2 ~ swd_sld, TRUE ~ 0) +
-               case_when(input$sli_tier == 2 ~ swd_sli, TRUE ~ 0) +
-               case_when(input$ohi_tier == 2 ~ swd_ohi, TRUE ~ 0) +
-               case_when(input$aut_tier == 2 ~ swd_aut, TRUE ~ 0) +
-               case_when(input$id_tier == 2 ~ swd_id, TRUE ~ 0) +
-               case_when(input$dd_tier == 2 ~ swd_dd, TRUE ~ 0) +
-               case_when(input$md_tier == 2 ~ swd_md, TRUE ~ 0) +
-               case_when(input$ed_tier == 2 ~ swd_ed, TRUE ~ 0) +
-               case_when(input$hi_tier == 2 ~ swd_hi, TRUE ~ 0) +
-               case_when(input$oi_tier == 2 ~ swd_oi, TRUE ~ 0) +
-               case_when(input$vi_tier == 2 ~ swd_vi, TRUE ~ 0) +
-               case_when(input$db_tier == 2 ~ swd_db, TRUE ~ 0) +
-               case_when(input$tbi_tier == 2 ~ swd_tbi, TRUE ~ 0) , 
-             sped_tier_iii_adm = case_when(input$sld_tier == 3 ~ swd_sld, TRUE ~ 0) +
-               case_when(input$sli_tier == 3 ~ swd_sli, TRUE ~ 0) +
-               case_when(input$ohi_tier == 3 ~ swd_ohi, TRUE ~ 0) +
-               case_when(input$aut_tier == 3 ~ swd_aut, TRUE ~ 0) +
-               case_when(input$id_tier == 3 ~ swd_id, TRUE ~ 0) +
-               case_when(input$dd_tier == 3 ~ swd_dd, TRUE ~ 0) +
-               case_when(input$md_tier == 3 ~ swd_md, TRUE ~ 0) +
-               case_when(input$ed_tier == 3 ~ swd_ed, TRUE ~ 0) +
-               case_when(input$hi_tier == 3 ~ swd_hi, TRUE ~ 0) +
-               case_when(input$oi_tier == 3 ~ swd_oi, TRUE ~ 0) +
-               case_when(input$vi_tier == 3 ~ swd_vi, TRUE ~ 0) +
-               case_when(input$db_tier == 3 ~ swd_db, TRUE ~ 0) +
-               case_when(input$tbi_tier == 3 ~ swd_tbi, TRUE ~ 0)  ,
-             
-             sped_tier_i_pct_calc = sped_tier_i_adm / adm, 
-             sped_tier_ii_pct_calc = sped_tier_ii_adm / adm, 
-             sped_tier_iii_pct_calc = sped_tier_iii_adm / adm, 
-             
-             el_wt_raw = input$el_weight / 100,
-             conc_el_max = input$conc_el_weight / 100,
-             conc_el_elig_min = input$conc_el_eligible[1] / 100,
-             conc_el_elig_max = input$conc_el_eligible[2] / 100,
-             conc_el_adj = case_when(el_pct <= conc_el_elig_min ~ 0,
-                                      el_pct >= conc_el_elig_max ~ 1,
-                                      TRUE ~ (el_pct - conc_el_elig_min) / 
-                                        (conc_el_elig_max - conc_el_elig_min)
-                                      
-             ),
-             conc_el_tiered_wt = input$conc_el_weight_tiered / 100,
-             conc_el_tiered_elig = input$conc_el_eligible_tier / 100,
-             conc_el_tiered_calc = case_when(el_pct >= conc_el_tiered_elig ~ conc_el_tiered_wt,
-                                            TRUE ~ 0),
-             conc_el_type = input$conc_el_type,
-             el_wt = case_when(conc_el_type == "Escalating" ~  (conc_el_max * conc_el_adj) + el_wt_raw,
-                               conc_el_type == "Tiered" ~ conc_el_tiered_calc + el_wt_raw),
-             el_conc = el_wt - el_wt_raw,
-             el_conc_adm = case_when(el_conc > 0 ~ el_adm,
-                                     TRUE ~ 0),
-             
-             s_per_sq_mi = adm / sq_mi,
-             
-             rural_wt = input$rural_weight / 100,
-             
-             rural_wt_adj = case_when(s_per_sq_mi > input$rural_elig[2] ~ 0,
-                                          s_per_sq_mi <= input$rural_elig[1] ~ 1,
-                                          TRUE ~ (input$rural_elig[2] - s_per_sq_mi) / 
-                                            (input$rural_elig[2] - input$rural_elig[1])),
-             rural_net_wt = rural_wt * rural_wt_adj,
-             
-             gifted_wt = input$gifted_weight / 100,
+      mutate(
+        district = psu_name,
+        weight_base = input$base_amt,
+        ed_wt = input$ed_weight / 100, 
+        conc_pov_max = input$conc_pov_weight / 100 , 
+        conc_pov_elig_min = input$conc_pov_eligible[1] / 100,
+        conc_pov_elig_max = input$conc_pov_eligible[2] / 100,
+        conc_pov_adj = case_when(
+         pct_eds <= conc_pov_elig_min ~ 0,
+         pct_eds >= conc_pov_elig_max ~ 1,
+         TRUE ~ (pct_eds - conc_pov_elig_min) / (conc_pov_elig_max - conc_pov_elig_min)
+        ),
+        conc_pov_net_wt = conc_pov_max * conc_pov_adj,
+        sped_tier_i_wt = input$sped_weight_tier_i / 100, 
+        sped_tier_ii_wt =input$sped_weight_tier_ii / 100,
+        sped_tier_iii_wt = input$sped_weight_tier_iii / 100, 
+         sped_tier_i_adm = case_when(input$ld_tier == 1 ~ ld, TRUE ~ 0) +
+         case_when(input$si_tier == 1 ~ si, TRUE ~ 0) +
+         case_when(input$oh_tier == 1 ~ oh, TRUE ~ 0) +
+         case_when(input$idmi_tier == 1 ~ idmi, TRUE ~ 0) +
+         case_when(input$au_tier == 1 ~ au, TRUE ~ 0) +
+         case_when(input$idmo_tier == 1 ~ idmo, TRUE ~ 0) +
+         case_when(input$dd_tier == 1 ~ dd, TRUE ~ 0) +
+         case_when(input$mu_tier == 1 ~ mu, TRUE ~ 0) +
+         case_when(input$ed_tier == 1 ~ ed, TRUE ~ 0) +
+         case_when(input$hi_tier == 1 ~ hi, TRUE ~ 0) +
+         case_when(input$oi_tier == 1 ~ oi, TRUE ~ 0) +
+         case_when(input$vi_tier == 1 ~ vi, TRUE ~ 0) +
+         case_when(input$db_tier == 1 ~ db, TRUE ~ 0) +
+         case_when(input$df_tier == 1 ~ df, TRUE ~ 0) +
+         case_when(input$idse_tier == 1 ~ idse, TRUE ~ 0) +
+         case_when(input$tb_tier == 1 ~ tb, TRUE ~ 0) , 
+       sped_tier_ii_adm = case_when(input$ld_tier == 2 ~ ld, TRUE ~ 0) +
+         case_when(input$si_tier == 2 ~ si, TRUE ~ 0) +
+         case_when(input$oh_tier == 2 ~ oh, TRUE ~ 0) +
+         case_when(input$idmi_tier == 2 ~ idmi, TRUE ~ 0) +
+         case_when(input$au_tier == 2 ~ au, TRUE ~ 0) +
+         case_when(input$idmo_tier == 2 ~ idmo, TRUE ~ 0) +
+         case_when(input$dd_tier == 2 ~ dd, TRUE ~ 0) +
+         case_when(input$mu_tier == 2 ~ mu, TRUE ~ 0) +
+         case_when(input$ed_tier == 2 ~ ed, TRUE ~ 0) +
+         case_when(input$hi_tier == 2 ~ hi, TRUE ~ 0) +
+         case_when(input$oi_tier == 2 ~ oi, TRUE ~ 0) +
+         case_when(input$vi_tier == 2 ~ vi, TRUE ~ 0) +
+         case_when(input$db_tier == 2 ~ db, TRUE ~ 0) +
+         case_when(input$df_tier == 2 ~ df, TRUE ~ 0) +
+         case_when(input$idse_tier == 2 ~ idse, TRUE ~ 0) +
+         case_when(input$tb_tier == 2 ~ tb, TRUE ~ 0) ,
+       sped_tier_iii_adm = case_when(input$ld_tier == 3 ~ ld, TRUE ~ 0) +
+         case_when(input$si_tier == 3 ~ si, TRUE ~ 0) +
+         case_when(input$oh_tier == 3 ~ oh, TRUE ~ 0) +
+         case_when(input$idmi_tier == 3 ~ idmi, TRUE ~ 0) +
+         case_when(input$au_tier == 3 ~ au, TRUE ~ 0) +
+         case_when(input$idmo_tier == 3 ~ idmo, TRUE ~ 0) +
+         case_when(input$dd_tier == 3 ~ dd, TRUE ~ 0) +
+         case_when(input$mu_tier == 3 ~ mu, TRUE ~ 0) +
+         case_when(input$ed_tier == 3 ~ ed, TRUE ~ 0) +
+         case_when(input$hi_tier == 3 ~ hi, TRUE ~ 0) +
+         case_when(input$oi_tier == 3 ~ oi, TRUE ~ 0) +
+         case_when(input$vi_tier == 3 ~ vi, TRUE ~ 0) +
+         case_when(input$db_tier == 3 ~ db, TRUE ~ 0) +
+         case_when(input$df_tier == 3 ~ df, TRUE ~ 0) +
+         case_when(input$idse_tier == 3 ~ idse, TRUE ~ 0) +
+         case_when(input$tb_tier == 3 ~ tb, TRUE ~ 0) ,
+        
+        sped_tier_i_pct_calc = sped_tier_i_adm / adm, 
+        sped_tier_ii_pct_calc = sped_tier_ii_adm / adm, 
+        sped_tier_iii_pct_calc = sped_tier_iii_adm / adm, 
+        
+        el_pct = el_adm / adm,
+        el_wt_raw = input$el_weight / 100,
+        conc_el_max = input$conc_el_weight / 100,
+        conc_el_elig_min = input$conc_el_eligible[1] / 100,
+        conc_el_elig_max = input$conc_el_eligible[2] / 100,
+        conc_el_adj = case_when(
+         el_pct <= conc_el_elig_min ~ 0,
+         el_pct >= conc_el_elig_max ~ 1,
+         TRUE ~ (el_pct - conc_el_elig_min) / (conc_el_elig_max - conc_el_elig_min)
+        ),
+        conc_el_tiered_wt = input$conc_el_weight_tiered / 100,
+        conc_el_tiered_elig = input$conc_el_eligible_tier / 100,
+        conc_el_tiered_calc = case_when(
+         el_pct >= conc_el_tiered_elig ~ conc_el_tiered_wt,
+         TRUE ~ 0
+       ),
+        conc_el_type = input$conc_el_type,
+        el_wt = case_when(
+         conc_el_type == "Escalating" ~  (conc_el_max * conc_el_adj) + el_wt_raw,
+         conc_el_type == "Tiered" ~ conc_el_tiered_calc + el_wt_raw),
+        el_conc = el_wt - el_wt_raw,
+        el_conc_adm = case_when(
+         el_conc > 0 ~ el_adm,
+         TRUE ~ 0
+       ),
+        s_per_sq_mi = adm / sq_mi,
+        
+        rural_wt = input$rural_weight / 100,
+
+
+        
+        rural_wt_sparse_adj = case_when(
+         s_per_sq_mi > input$rural_elig_sqmi[2] ~ 0,
+         s_per_sq_mi <= input$rural_elig_sqmi[1] ~ 1,
+         TRUE ~ (input$rural_elig_sqmi[2] - s_per_sq_mi) / (input$rural_elig_sqmi[2] - input$rural_elig_sqmi[1])),
+        rural_wt_enrl_adj = case_when(
+          type == "Charter" ~ 0,
+          adm > input$rural_elig_enrl[2] ~ 0,
+          adm <= input$rural_elig_enrl[1] ~ 1,
+          TRUE ~ (input$rural_elig_enrl[2] - adm) / (input$rural_elig_enrl[2] - input$rural_elig_enrl[1])
+        ),
+        rural_wt_adj = case_when(
+         input$rural_type == "Sparsity" ~ rural_wt_sparse_adj,
+         input$rural_type == "Enrollment" ~ rural_wt_enrl_adj
+        ),
+        rural_net_wt = rural_wt * rural_wt_adj,
+
+        aig_enroll = (input$gifted_pct / 100) * adm,
+        gifted_wt = input$gifted_weight / 100,
              
       #       charter_wt = input$charter_weight / 100,
             
@@ -229,7 +264,7 @@ observeEvent(input$apply_scenario, {
              
              
              
-             ) |> 
+      ) |> 
       # calculate weighted funding amounts
       mutate(base_total = weight_base * adm,
              
@@ -257,7 +292,7 @@ observeEvent(input$apply_scenario, {
              
              el_weight_conc_raw = el_adm * weight_base * (el_wt - el_wt_raw),
              
-             el_weight_conc = el_weight_base_raw,
+             el_weight_conc = el_weight_conc_raw,
              
              el_weight_total_raw = el_adm * weight_base * el_wt,
              
@@ -581,13 +616,13 @@ observeEvent(input$apply_scenario, {
                    aes(x = current_pp,
                        y = formula_pp,
                        size = adm, 
-                       color = ed_pct,
+                       color = pct_eds,
                        text = paste0("District: ",
                                      district, "<br>",
                                      "ADM: ", 
                                      comma(adm, accuracy =1), "<br>",
                                      "ED %: ", 
-                                     percent(ed_pct, accuracy = .1), "<br>",
+                                     percent(pct_eds, accuracy = .1), "<br>",
                                      "Current PP: ",
                                      dollar(current_pp, accuracy = 1), "<br>",
                                      "Model PP: ", 
@@ -629,7 +664,7 @@ observeEvent(input$apply_scenario, {
     ggplotly(
       ggplot() +
         geom_point(data = demo_model(),
-                   aes(x = ed_pct,
+                   aes(x = pct_eds,
                        y = current_pp,
                        size = adm,
                        text = paste0("Current Funding", "<br>",
@@ -638,7 +673,7 @@ observeEvent(input$apply_scenario, {
                                      "ADM: ", 
                                      comma(adm, accuracy =1), "<br>",
                                      "ED %: ", 
-                                     percent(ed_pct, accuracy = .1), "<br>",
+                                     percent(pct_eds, accuracy = .1), "<br>",
                                      "Current PP: ",
                                      dollar(current_pp, accuracy = 1), "<br>",
                                      "Model PP: ", 
@@ -649,7 +684,7 @@ observeEvent(input$apply_scenario, {
                    color = "grey67",
                    alpha = .5) +
         geom_point(data = demo_model(),
-                   aes(x = ed_pct,
+                   aes(x = pct_eds,
                        y = formula_pp,
                        size = adm, 
                        text = paste0("Modeled Funding", "<br>",
@@ -658,7 +693,7 @@ observeEvent(input$apply_scenario, {
                                      "ADM: ", 
                                      comma(adm, accuracy =1), "<br>",
                                      "ED %: ", 
-                                     percent(ed_pct, accuracy = .1), "<br>",
+                                     percent(pct_eds, accuracy = .1), "<br>",
                                      "Current PP: ",
                                      dollar(current_pp, accuracy = 1), "<br>",
                                      "Model PP: ", 
@@ -694,15 +729,15 @@ observeEvent(input$apply_scenario, {
   
   pov_wt_df <- reactive({
     
-    tibble(ed_pct = (0:100)/100) |> 
+    tibble(pct_eds = (0:100)/100) |> 
       
       mutate(ed_weight = input$ed_weight / 100,
              conc_pov_min = input$conc_pov_eligible[1] / 100,
              conc_pov_max = input$conc_pov_eligible[2] / 100,
              conc_pov_weight = input$conc_pov_weight / 100,
-             conc_pov_adj = (ed_pct - conc_pov_min) / (conc_pov_max - conc_pov_min),
-             ed_wt = case_when(ed_pct < conc_pov_min ~ ed_weight,
-                               ed_pct >= conc_pov_max ~ (ed_weight + conc_pov_weight),
+             conc_pov_adj = (pct_eds - conc_pov_min) / (conc_pov_max - conc_pov_min),
+             ed_wt = case_when(pct_eds < conc_pov_min ~ ed_weight,
+                               pct_eds >= conc_pov_max ~ (ed_weight + conc_pov_weight),
                                TRUE ~ ed_weight + (conc_pov_weight * conc_pov_adj)
              ))
     
@@ -712,8 +747,8 @@ observeEvent(input$apply_scenario, {
     
     ggplotly(
       ggplot(pov_wt_df()) + 
-        geom_line(aes(x = ed_pct, y = ed_wt, group = 1,
-                      text = paste0("ED %: ", percent(ed_pct, accuracy = 1), "<br>",
+        geom_line(aes(x = pct_eds, y = ed_wt, group = 1,
+                      text = paste0("ED %: ", percent(pct_eds, accuracy = 1), "<br>",
                                     "Combined Weight: ", percent(ed_wt, accuracy = .1)))) + 
         scale_x_continuous(limits = c(0,1), labels = label_percent()) +
         scale_y_continuous(limits = c(0,(input$conc_pov_weight + input$ed_weight + 5) / 100 ), 
@@ -734,11 +769,11 @@ observeEvent(input$apply_scenario, {
     
     ggplotly(
       ggplot(demo_model()) +
-        geom_histogram(aes(x = ed_pct,
+        geom_histogram(aes(x = pct_eds,
                            text = paste0(district,
                                          "<br>",
                                          "Econ. Disadv. %: ",
-                                         percent(ed_pct, accuracy = .1)),
+                                         percent(pct_eds, accuracy = .1)),
         ),
         binwidth = .1,
         center = .05) +

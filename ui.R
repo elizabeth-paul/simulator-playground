@@ -38,22 +38,7 @@ input_sidebar <- sidebar(
     # open = FALSE,
     # multiple = FALSE,
     id = "sidebarAccordion",
-    
-    # accordion_panel(
-    #   
-    #   "Scenario Options",
-    #   selectInput("scenario",
-    #               label = "Update inputs to match following scenarios:",
-    #               choices = c("Default",
-    #                           "Scenario 1: Higher Poverty Weights",
-    #                           "Scenario 2: Higher Base Amount",
-    #                           "Scenario 3: Higher SPED and EL Weights"),
-    #               selected = "Default") |> 
-    #     tooltip("These scenarios update values for each input to project a particular scenario."),
-    #   actionButton("apply_scenario", "Apply Scenario"),
-    #   
-    # ),
-    
+  
     
     
     accordion_panel(
@@ -121,33 +106,42 @@ input_sidebar <- sidebar(
       accordion_panel(
         "Exceptional Child Tiers",
         open = FALSE,
-        sliderInput("sld_tier",
+        # UPDATE tiers to align with sy24-25 data elements
+        sliderInput("ld_tier",
                     label = "Specific Learning Disability",
                     min = 1, max = 3, 
                     value = 1),
-        sliderInput("sli_tier",
+        sliderInput("si_tier",
                     label = "Speech/Language Impairment",
                     min = 1, max = 3, 
                     value = 1),
-        sliderInput("ohi_tier",
+        sliderInput("oh_tier",
                     label = "Other Health Impairment",
                     min = 1, max = 3, 
                     value = 1),
         
-        sliderInput("aut_tier",
+        sliderInput("au_tier",
                     label = "Autism",
                     min = 1, max = 3, 
-                    value = 2),
-        sliderInput("id_tier",
-                    label = "Intellectual Disability",
+                    value = 1),
+        sliderInput("idmi_tier",
+                    label = "Intellectual Disability - Mild",
+                    min = 1, max = 3, 
+                    value = 1),
+        sliderInput("idmo_tier",
+                    label = "Intellectual Disability - Moderate",
                     min = 1, max = 3, 
                     value = 2),
+        sliderInput("idse_tier",
+                    label = "Intellectual Disability - Severe",
+                    min = 1, max = 3, 
+                    value = 3),
         
         sliderInput("dd_tier",
                     label = "Developmental Disability",
                     min = 1, max = 3, 
                     value = 2),
-        sliderInput("md_tier",
+        sliderInput("mu_tier",
                     label = "Multiple Disabilities",
                     min = 1, max = 3, 
                     value = 2),
@@ -167,11 +161,15 @@ input_sidebar <- sidebar(
                     label = "Visual Impairment",
                     min = 1, max = 3, 
                     value = 3),
+        sliderInput("df_tier",
+                    label = "Deafness",
+                    min = 1, max = 3, 
+                    value = 3),
         sliderInput("db_tier",
                     label = "Deaf-Blindness",
                     min = 1, max = 3, 
                     value = 3),
-        sliderInput("tbi_tier",
+        sliderInput("tb_tier",
                     label = "Traumatic Brain Injury",
                     min = 1, max = 3, 
                     value = 3)
@@ -232,7 +230,12 @@ input_sidebar <- sidebar(
     
     accordion_panel(
       "Rural Weight",
-      
+      radioButtons(
+        "rural_type", 
+        label = "Rural Weight Type",
+        choices = c("Sparsity", "Enrollment"),
+        selected = "Sparsity"
+      ),
       sliderInput("rural_weight",
                   label = "Rural Weight",
                   min = 0, max = 50,
@@ -240,12 +243,26 @@ input_sidebar <- sidebar(
                   value = 5,
                   post = "%") |> 
         tooltip("Select range of maximum rural weight"),
-      sliderInput("rural_elig",
+      conditionalPanel(
+        condition = "input.rural_type == 'Sparsity'",
+        sliderInput("rural_elig_sqmi",
                   label = "Rural Weight Eligibility, Students per Sq. Mi.",
                   min = 0, max = 30,
                   step = 1,
                   value = c(1, 10)) |> 
-        tooltip("Select range of maximum rural weight eligibility. Lower value indicates the students per sq. mi. value below which districts would recieve the maximum rural weight; higher value indicates the students per sq. mi when districts would become eligible for the rural weight."),
+        tooltip("Select range of maximum rural weight eligibility. Lower value indicates the students per sq. mi. value below which districts would recieve the maximum rural weight; higher value indicates the students per sq. mi when districts would become eligible for the rural weight.")
+      ),
+      conditionalPanel(
+        condition = "input.rural_type == 'Enrollment'",
+        sliderInput("rural_elig_enrl",
+                  label = "Rural Weight Eligibility, Enrollment",
+                  min = 0, max = 5000,
+                  step = 100,
+                  value = c(500, 3000)) |> 
+        tooltip("Select range of maximum rural weight eligibility. Lower value indicates the enrollment below which districts would recieve the maximum rural weight; higher value indicates the enrollment when districts would become eligible for the rural weight. This weight only applies to non-charter LEAs.")
+      )
+
+
       
     ),
     
@@ -265,6 +282,13 @@ input_sidebar <- sidebar(
 
     accordion_panel(
       "Gifted Weight",
+      sliderInput("gifted_pct",
+                  label = "Gifted Enrollment - % Assumption",
+                  min = 0, max = 30,
+                  step = 5,
+                  value = 1,
+                  post = "%") |>
+        tooltip("Select gifted weight"),
       sliderInput("gifted_weight",
                   label = "Gifted Weight",
                   min = 0, max = 50,
@@ -272,8 +296,6 @@ input_sidebar <- sidebar(
                   value = 2,
                   post = "%") |>
         tooltip("Select gifted weight")
-
-
     )
     
   ),
