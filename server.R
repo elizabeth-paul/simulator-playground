@@ -250,6 +250,10 @@ observeEvent(input$apply_scenario, {
          input$rural_type == "Enrollment" ~ rural_wt_enrl_adj
         ),
         rural_net_wt = rural_wt * rural_wt_adj,
+        rural_enroll = case_when(
+          rural_net_wt > 0 ~ adm,
+          TRUE ~ 0
+        ),
 
         aig_enroll = (input$gifted_pct / 100) * adm,
         gifted_wt = input$gifted_weight / 100,
@@ -366,6 +370,11 @@ observeEvent(input$apply_scenario, {
       elraw_weight_total = sum(el_weight_base, na.rm = T),
       elconc_weight_total = sum(el_weight_conc, na.rm = T),
       eltotal_weight_total = sum(el_weight_total, na.rm = T),
+
+      rural_base = mean(weight_base, na.rm = T),
+      rural_adm = sum(rural_enroll, na.rm = T),
+      rural_weight_total = sum(rural_weight_total, na.rm = T),
+      rural_weight_pct = (rural_weight_total / rural_base) / rural_adm,
 
 #      charter_base = mean(weight_base, na.rm = T),
 #      charter_weight_pct = mean(charter_wt, na.rm = T),
@@ -537,7 +546,11 @@ observeEvent(input$apply_scenario, {
       elconc_weight_total = sum(el_weight_conc, na.rm = T),
       eltotal_weight_total = sum(el_weight_total, na.rm = T),
 
-
+      rural_base = mean(weight_base, na.rm = T),
+      
+      rural_adm = sum(rural_enroll, na.rm = T),
+      rural_weight_total = sum(rural_weight_total, na.rm = T),
+      rural_weight_pct = (rural_weight_total / rural_base) / rural_adm,
       
 #      charter_base = mean(weight_base, na.rm = T),
 #      charter_weight_pct = mean(charter_wt, na.rm = T),
@@ -1050,6 +1063,7 @@ observeEvent(input$apply_scenario, {
           sum(poverty_weight_total, na.rm = TRUE) + 
           sum(sped_weight_total, na.rm = TRUE) +
           sum(el_weight_total, na.rm = TRUE) + 
+          sum(rural_weight_total, na.rm = TRUE) +
         #  sum(charter_weight_total, na.rm = TRUE),
           sum(gifted_weight_total, na.rm = TRUE),
         total_current = sum(current_total, na.rm = TRUE)
@@ -1066,6 +1080,7 @@ observeEvent(input$apply_scenario, {
           sum(poverty_weight_total, na.rm = TRUE) + 
           sum(sped_weight_total, na.rm = TRUE) +
           sum(el_weight_total, na.rm = TRUE) + 
+          sum(rural_weight_total, na.rm = TRUE) +
          # sum(charter_weight_total, na.rm = TRUE),
           sum(gifted_weight_total, na.rm = TRUE),
         total_current = sum(current_total, na.rm = TRUE),
