@@ -26,7 +26,7 @@ bw_secondary <- c("#FFC762", # 1 yellow
                   "#FFA497") # 8 peach
 
 
-dist_options <- read_rds("data/demo_dist.rds") |> pull(district)
+dist_options <- read_rds("data/nc_2425_data.rds") |> pull(psu_name)
 
 # input sidebar -------------
 input_sidebar <- sidebar(
@@ -45,8 +45,8 @@ input_sidebar <- sidebar(
       "Base Amount",
       sliderInput("base_amt",
                   "Base Funding Per-Pupil:",
-                  min =  6000, max = 10000,
-                  value = 8000, 
+                  min =  4000, max = 10000,
+                  value = 5800, 
                   step = 50,
                   pre = "$")
       
@@ -59,7 +59,7 @@ input_sidebar <- sidebar(
       sliderInput("ed_weight",
                   label = "Economically Disadvantaged Weight",
                   min = 0, max = 150, 
-                  step = 5, value = 25,
+                  step = 5, value = 40,
                   post = "%") |> 
         tooltip("Select weight for economically disadvantaged"),
       
@@ -84,7 +84,7 @@ input_sidebar <- sidebar(
                   label = "Tier 1", 
                   min = 0, max = 300, 
                   step = 5, 
-                  value = 20,
+                  value = 110,
                   post = "%") |> 
         tooltip("Select Tier I special education weight"),
       
@@ -92,7 +92,7 @@ input_sidebar <- sidebar(
                   label = "Tier 2", 
                   min = 0, max = 300, 
                   step = 5, 
-                  value = 50,
+                  value = 130,
                   post = "%") |> 
         tooltip("Select Tier II special education weight"),
       
@@ -100,7 +100,7 @@ input_sidebar <- sidebar(
                   label = "Tier 3", 
                   min = 0, max = 300, 
                   step = 5, 
-                  value = 100,
+                  value = 150,
                   post = "%") |> 
         tooltip("Select Tier III special education weight"),
       accordion_panel(
@@ -182,14 +182,14 @@ input_sidebar <- sidebar(
       "English Learner Weight",
 
       sliderInput("el_weight", label = "EL weight", 
-                  min = 0, max = 50, step = 5, 
-                  value = 15, post = "%") |> 
+                  min = 0, max = 50, step = .5, 
+                  value = 17.5, post = "%") |> 
         tooltip("Select EL weight"),
       
       radioButtons("conc_el_type", 
                    label = "Conc. EL Weight Type",
                    choices = c("Tiered", "Escalating"),
-                   selected = "Tiered"),
+                   selected = "Escalating"),
       conditionalPanel(condition = "input.conc_el_type == 'Tiered'",
                        sliderInput("conc_el_weight_tiered", 
                                    label = "Max. Concentrated EL Weight", 
@@ -240,7 +240,7 @@ input_sidebar <- sidebar(
                   label = "Rural Weight",
                   min = 0, max = 50,
                   step = 5,
-                  value = 5,
+                  value = 25,
                   post = "%") |> 
         tooltip("Select range of maximum rural weight"),
       conditionalPanel(
@@ -249,7 +249,7 @@ input_sidebar <- sidebar(
                   label = "Rural Weight Eligibility, Students per Sq. Mi.",
                   min = 0, max = 30,
                   step = 1,
-                  value = c(1, 10)) |> 
+                  value = c(1, 12)) |> 
         tooltip("Select range of maximum rural weight eligibility. Lower value indicates the students per sq. mi. value below which districts would recieve the maximum rural weight; higher value indicates the students per sq. mi when districts would become eligible for the rural weight.")
       ),
       conditionalPanel(
@@ -286,14 +286,14 @@ input_sidebar <- sidebar(
                   label = "Gifted Enrollment - % Assumption",
                   min = 0, max = 30,
                   step = 5,
-                  value = 1,
+                  value = 5,
                   post = "%") |>
         tooltip("Select gifted weight"),
       sliderInput("gifted_weight",
                   label = "Gifted Weight",
                   min = 0, max = 50,
                   step = 5,
-                  value = 2,
+                  value = 5,
                   post = "%") |>
         tooltip("Select gifted weight")
     )
