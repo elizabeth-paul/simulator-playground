@@ -28,7 +28,17 @@ bw_secondary <- c("#FFC762", # 1 yellow
                   "#FFA497") # 8 peach
 
 # load dist data
-demo_dist <- read_rds("data/nc_2425_data.rds") 
+charter_eds <- read_rds("data/charter_host_dist_rates.rds") |>
+  select(psu, host_dist, dist_pct_pov)
+
+demo_dist <- read_rds("data/nc_2425_data.rds") |>
+  left_join(charter_eds, by = "psu")
+
+# City districts excluded from rural weight
+city_psus <- c(761, 111, 681, 821, 861, 181, 132, 291, 491, 862, 182, 421, 292, 422, 241)
+
+# Helper function for NA handling
+na_fix <- function(x) ifelse(is.na(x), 0, x) 
 
 
 # shiny server ---------
@@ -138,14 +148,32 @@ observeEvent(input$apply_scenario, {
       mutate(
         district = psu_name,
         weight_base = input$base_amt,
-        ed_wt = input$ed_weight / 100, 
-        conc_pov_max = input$conc_pov_weight / 100 , 
+        ed_wt = input$ed_weight / 100,
+
+        # Calculate poverty population based on data source selection
+        pov_pop_calc = case_when(
+          input$pov_data_source == "SAIPE" & type == "Traditional" ~ pov_pop,
+          input$pov_data_source == "SAIPE" & type == "Charter" ~ dist_pct_pov * adm,
+          input$pov_data_source == "ED" ~ ed_adm,
+          TRUE ~ 0),
+
+        # Calculate poverty percentage based on data source
+        pov_pct_calc = case_when(
+          input$pov_data_source == "SAIPE" & type == "Traditional" ~ pct_pov,
+          input$pov_data_source == "SAIPE" & type == "Charter" ~ dist_pct_pov,
+          input$pov_data_source == "ED" ~ pct_eds,
+          TRUE ~ 0),
+
+        conc_pov_max = input$conc_pov_weight / 100,
         conc_pov_elig_min = input$conc_pov_eligible[1] / 100,
         conc_pov_elig_max = input$conc_pov_eligible[2] / 100,
+
+        # Updated concentrated poverty (exclude charters in SAIPE mode)
         conc_pov_adj = case_when(
-         pct_eds <= conc_pov_elig_min ~ 0,
-         pct_eds >= conc_pov_elig_max ~ 1,
-         TRUE ~ (pct_eds - conc_pov_elig_min) / (conc_pov_elig_max - conc_pov_elig_min)
+          input$pov_data_source == "SAIPE" & type == "Charter" ~ 0,
+          pov_pct_calc <= conc_pov_elig_min ~ 0,
+          pov_pct_calc >= conc_pov_elig_max ~ 1,
+          TRUE ~ (pov_pct_calc - conc_pov_elig_min) / (conc_pov_elig_max - conc_pov_elig_min)
         ),
         conc_pov_net_wt = conc_pov_max * conc_pov_adj,
         sped_tier_i_wt = input$sped_weight_tier_i / 100, 
@@ -236,9 +264,10 @@ observeEvent(input$apply_scenario, {
 
         
         rural_wt_sparse_adj = case_when(
-         s_per_sq_mi > input$rural_elig_sqmi[2] ~ 0,
-         s_per_sq_mi <= input$rural_elig_sqmi[1] ~ 1,
-         TRUE ~ (input$rural_elig_sqmi[2] - s_per_sq_mi) / (input$rural_elig_sqmi[2] - input$rural_elig_sqmi[1])),
+          psu %in% city_psus ~ 0,
+          s_per_sq_mi > input$rural_elig_sqmi[2] ~ 0,
+          s_per_sq_mi <= input$rural_elig_sqmi[1] ~ 1,
+          TRUE ~ (input$rural_elig_sqmi[2] - s_per_sq_mi) / (input$rural_elig_sqmi[2] - input$rural_elig_sqmi[1])),
         rural_wt_enrl_adj = case_when(
           type != "Traditional" ~ 0,
           adm > input$rural_elig_enrl[2] ~ 0,
@@ -257,6 +286,9 @@ observeEvent(input$apply_scenario, {
 
         aig_enroll = (input$gifted_pct / 100) * adm,
         gifted_wt = input$gifted_weight / 100,
+
+        cte_enroll = gr8_adm + gr9_adm + gr10_adm + gr11_adm + gr12_adm,
+        cte_wt = input$cte_weight / 100,
              
       #       charter_wt = input$charter_weight / 100,
             
@@ -272,9 +304,9 @@ observeEvent(input$apply_scenario, {
       # calculate weighted funding amounts
       mutate(base_total = weight_base * adm,
              
-             poverty_weight_core = ed_adm * weight_base * ed_wt,
-             poverty_weight_conc = ed_adm * weight_base * conc_pov_net_wt,
-             poverty_weight_total = poverty_weight_core + poverty_weight_conc,
+             poverty_weight_core = pov_pop_calc * weight_base * ed_wt,
+             poverty_weight_conc = pov_pop_calc * weight_base * conc_pov_net_wt,
+             poverty_weight_total = na_fix(poverty_weight_core + poverty_weight_conc),
              
 
              sped_weight_tier_i_raw = sped_tier_i_adm * weight_base * sped_tier_i_wt,
@@ -314,21 +346,21 @@ observeEvent(input$apply_scenario, {
 #             charter_weight_total = charter_weight_total_raw,
              
              gifted_weight_total_raw = aig_enroll * gifted_wt * weight_base,
-             
-             gifted_weight_total = gifted_weight_total_raw,
-             
 
-             
+             gifted_weight_total = gifted_weight_total_raw,
+
+             cte_weight_total = cte_enroll * cte_wt * weight_base,
+
              weight_total = poverty_weight_total + sped_weight_total +
-               el_weight_total +  rural_weight_total + #charter_weight_total + 
-               gifted_weight_total,
+               el_weight_total + rural_weight_total +
+               gifted_weight_total + cte_weight_total,
              weight_total_pp = weight_total / adm,
-             formula_total = base_total + weight_total,
+             formula_total = base_total + weight_total + na_fix(current_low_wealth),
              formula_pp = formula_total / adm,
-             current_pp = current_total / adm,
-             total_diff = formula_total - current_total,
+             current_pp = current_total_w_gifted / adm,
+             total_diff = formula_total - current_total_w_gifted,
              pp_diff = total_diff / adm
-             
+
              )
     
     
@@ -385,22 +417,29 @@ observeEvent(input$apply_scenario, {
       gifted_weight_pct = mean(gifted_wt, na.rm = T),
       gifted_adm = sum(aig_enroll, na.rm = T),
       gifted_weight_total = sum(gifted_weight_total, na.rm = T),
-      
-      total_current = sum(current_total, na.rm = T)
-                
-      ) |>  
+
+      cte_base = mean(weight_base, na.rm = T),
+      cte_weight_pct = mean(cte_wt, na.rm = T),
+      cte_adm = sum(cte_enroll, na.rm = T),
+      cte_weight_total = sum(cte_weight_total, na.rm = T),
+
+      lowwealth_weight_total = sum(na_fix(current_low_wealth), na.rm = T),
+
+      total_current = sum(current_total_w_gifted, na.rm = T)
+
+      ) |>
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
-               eltotal_weight_total + #charter_weight_total + 
-               gifted_weight_total,
-            
-             total_diff = total_weight_total - total_current
-      ) |> 
-      pivot_longer(everything()) |> 
-      
-      separate(name, sep = "_", 
+               eltotal_weight_total + rural_weight_total +
+               gifted_weight_total + cte_weight_total + lowwealth_weight_total,
+
+             total_diff = (total_weight_total + lowwealth_weight_total) - total_current
+      ) |>
+      pivot_longer(everything()) |>
+
+      separate(name, sep = "_",
                into = c("name", "cat"),
-               extra = "merge") |> 
-      pivot_wider(names_from = "cat", values_from = "value") |> 
+               extra = "merge") |>
+      pivot_wider(names_from = "cat", values_from = "value") |>
       mutate(name = str_to_title(name),
              name = str_replace_all(name, "Sped1", "SPED, Tier I"),
              name = str_replace_all(name, "Sped2", "SPED, Tier II"),
@@ -409,7 +448,10 @@ observeEvent(input$apply_scenario, {
              
              name = str_replace_all(name, "Elraw", "EL, Standard"),
              name = str_replace_all(name, "Elconc", "EL, Concentrated"),
-             name = str_replace_all(name, "Eltotal", "EL, Total")) |> 
+             name = str_replace_all(name, "Eltotal", "EL, Total"),
+             name = str_replace_all(name, "Lowwealth", "Low Wealth"),
+             name = str_replace_all(name, "Cte", "CTE")
+            ) |> 
       rename(`Funding Category` = name,
              `Base Per-Pupil` = base,
              `Weight %` = weight_pct,
@@ -561,31 +603,41 @@ observeEvent(input$apply_scenario, {
       gifted_weight_pct = mean(gifted_wt, na.rm = T),
       gifted_adm = sum(aig_enroll, na.rm = T),
       gifted_weight_total = sum(gifted_weight_total, na.rm = T),
-      
-      total_current = sum(current_total, na.rm = T)
-      
-    ) |>  
+
+      cte_base = mean(weight_base, na.rm = T),
+      cte_weight_pct = mean(cte_wt, na.rm = T),
+      cte_adm = sum(cte_enroll, na.rm = T),
+      cte_weight_total = sum(cte_weight_total, na.rm = T),
+
+      lowwealth_weight_total = sum(na_fix(current_low_wealth), na.rm = T),
+
+      total_current = sum(current_total_w_gifted, na.rm = T)
+
+    ) |>
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
-               eltotal_weight_total + #charter_weight_total + 
-               gifted_weight_total,
-             
-             total_diff = total_weight_total - total_current
-      ) |> 
-      pivot_longer(everything()) |> 
-      
-      separate(name, sep = "_", 
+               eltotal_weight_total + rural_weight_total +
+               gifted_weight_total + cte_weight_total + lowwealth_weight_total,
+
+             total_diff = (total_weight_total + lowwealth_weight_total) - total_current
+      ) |>
+      pivot_longer(everything()) |>
+
+      separate(name, sep = "_",
                into = c("name", "cat"),
-               extra = "merge") |> 
-      pivot_wider(names_from = "cat", values_from = "value") |> 
+               extra = "merge") |>
+      pivot_wider(names_from = "cat", values_from = "value") |>
       mutate(name = str_to_title(name),
              name = str_replace_all(name, "Sped1", "SPED, Tier I"),
              name = str_replace_all(name, "Sped2", "SPED, Tier II"),
              name = str_replace_all(name, "Sped3", "SPED, Tier III"),
              name = str_replace_all(name, "Sped", "SPED, Total"),
-             
+
              name = str_replace_all(name, "Elraw", "EL, Standard"),
              name = str_replace_all(name, "Elconc", "EL, Concentrated"),
-             name = str_replace_all(name, "Eltotal", "EL, Total")) |> 
+             name = str_replace_all(name, "Eltotal", "EL, Total"),
+             name = str_replace_all(name, "Lowwealth", "Low Wealth"),
+             name = str_replace_all(name, "Cte", "CTE")
+            ) |> 
       rename(`Funding Category` = name,
              `Base Per-Pupil` = base,
              `Weight %` = weight_pct,
@@ -1057,36 +1109,38 @@ observeEvent(input$apply_scenario, {
   # right sidebar box data ----
   
   output$diff_total <- reactive({
-    model_summary <- demo_model() |> 
+    model_summary <- demo_model() |>
       summarise(
-        total_weight = sum(base_total, na.rm = TRUE) + 
-          sum(poverty_weight_total, na.rm = TRUE) + 
+        total_weight = sum(base_total, na.rm = TRUE) +
+          sum(poverty_weight_total, na.rm = TRUE) +
           sum(sped_weight_total, na.rm = TRUE) +
-          sum(el_weight_total, na.rm = TRUE) + 
+          sum(el_weight_total, na.rm = TRUE) +
           sum(rural_weight_total, na.rm = TRUE) +
-        #  sum(charter_weight_total, na.rm = TRUE),
-          sum(gifted_weight_total, na.rm = TRUE),
-        total_current = sum(current_total, na.rm = TRUE)
+          sum(gifted_weight_total, na.rm = TRUE) +
+          sum(cte_weight_total, na.rm = TRUE) +
+          sum(na_fix(current_low_wealth), na.rm = TRUE),
+        total_current = sum(current_total_w_gifted, na.rm = TRUE)
       )
-    
+
     dollar(model_summary$total_weight - model_summary$total_current)
   })
-  
-  
+
+
   output$diff_pp <- reactive({
-    model_summary <- demo_model() |> 
+    model_summary <- demo_model() |>
       summarise(
-        total_weight = sum(base_total, na.rm = TRUE) + 
-          sum(poverty_weight_total, na.rm = TRUE) + 
+        total_weight = sum(base_total, na.rm = TRUE) +
+          sum(poverty_weight_total, na.rm = TRUE) +
           sum(sped_weight_total, na.rm = TRUE) +
-          sum(el_weight_total, na.rm = TRUE) + 
+          sum(el_weight_total, na.rm = TRUE) +
           sum(rural_weight_total, na.rm = TRUE) +
-         # sum(charter_weight_total, na.rm = TRUE),
-          sum(gifted_weight_total, na.rm = TRUE),
-        total_current = sum(current_total, na.rm = TRUE),
+          sum(gifted_weight_total, na.rm = TRUE) +
+          sum(cte_weight_total, na.rm = TRUE) +
+          sum(na_fix(current_low_wealth), na.rm = TRUE),
+        total_current = sum(current_total_w_gifted, na.rm = TRUE),
         adm = sum(adm, na.rm = TRUE)
       )
-    
+
     dollar(with(model_summary, (total_weight - total_current) / adm))
   })
   

@@ -56,11 +56,16 @@ input_sidebar <- sidebar(
     
     accordion_panel(
       "Economically Disadvantaged Weight",
+      radioButtons("pov_data_source",
+                   label = "Poverty Data Source",
+                   choices = c("SAIPE (Census)" = "SAIPE",
+                              "Economically Disadvantaged" = "ED"),
+                   selected = "SAIPE"),
       sliderInput("ed_weight",
                   label = "Economically Disadvantaged Weight",
-                  min = 0, max = 150, 
+                  min = 0, max = 150,
                   step = 5, value = 40,
-                  post = "%") |> 
+                  post = "%") |>
         tooltip("Select weight for economically disadvantaged"),
       
       sliderInput("conc_pov_weight", 
@@ -122,8 +127,8 @@ input_sidebar <- sidebar(
         
         sliderInput("au_tier",
                     label = "Autism",
-                    min = 1, max = 3, 
-                    value = 1),
+                    min = 1, max = 3,
+                    value = 2),
         sliderInput("idmi_tier",
                     label = "Intellectual Disability - Mild",
                     min = 1, max = 3, 
@@ -186,16 +191,16 @@ input_sidebar <- sidebar(
                   value = 17.5, post = "%") |> 
         tooltip("Select EL weight"),
       
-      radioButtons("conc_el_type", 
+      radioButtons("conc_el_type",
                    label = "Conc. EL Weight Type",
                    choices = c("Tiered", "Escalating"),
-                   selected = "Escalating"),
+                   selected = "Tiered"),
       conditionalPanel(condition = "input.conc_el_type == 'Tiered'",
-                       sliderInput("conc_el_weight_tiered", 
-                                   label = "Max. Concentrated EL Weight", 
+                       sliderInput("conc_el_weight_tiered",
+                                   label = "Max. Concentrated EL Weight",
                                    min = 0, max = 50,
-                                   step = 1, value = 3,
-                                   post = "%") |> 
+                                   step = 1, value = 0,
+                                   post = "%") |>
                          tooltip("Select concentrated EL weight"),
                        
                        sliderInput("conc_el_eligible_tier", 
@@ -296,8 +301,19 @@ input_sidebar <- sidebar(
                   value = 5,
                   post = "%") |>
         tooltip("Select gifted weight")
+    ),
+
+    accordion_panel(
+      "CTE Weight",
+      sliderInput("cte_weight",
+                  label = "CTE Weight (Grades 8-12)",
+                  min = 0, max = 50,
+                  step = 1,
+                  value = 16.1,
+                  post = "%") |>
+        tooltip("Select CTE weight applied to grades 8-12 enrollment")
     )
-    
+
   ),
 
 
@@ -442,6 +458,42 @@ shinyUI({
             
             navset_card_tab(
               
+              
+              
+              #  nav_menu for Tables
+              nav_menu(
+                "Tables",
+                
+                nav_panel("District Comparison",
+                          fluidRow(
+                            column(6, h3("District Comparison")),
+                            column(6, 
+                                   downloadButton("dl_dist_comp", "Download District Comparison")),
+                          ),
+                          DTOutput("tbl_dist_comp")
+                ),
+                nav_panel("District Detail",
+                          fluidRow(
+                            column(6,
+                                   h3("District Detail")),
+                            column(6,
+                                   selectInput("dist_detail_tbl", "Select District:",
+                                               choices = dist_options))
+                            
+                          ),
+                          DTOutput("tbl_dist_detail")
+                ),
+                nav_panel(
+                  "State Toplines",
+                  fluidRow(
+                    column(6, h3("State Toplines")),
+                    column(6, downloadButton("dl_state_toplines", "Download State Toplines"))
+                  ),
+                  DTOutput("tbl_state_toplines")
+                          ),
+               
+              ),
+
               #  nav_menu for Plots
               nav_menu(
                 "Plots",
@@ -464,39 +516,6 @@ shinyUI({
                 
                 
                 
-              ),
-              
-              #  nav_menu for Tables
-              nav_menu(
-                "Tables",
-                nav_panel(
-                  "State Toplines",
-                  fluidRow(
-                    column(6, h3("State Toplines")),
-                    column(6, downloadButton("dl_state_toplines", "Download State Toplines"))
-                  ),
-                  DTOutput("tbl_state_toplines")
-                          ),
-                nav_panel("District Comparison",
-                          fluidRow(
-                            column(6, h3("District Comparison")),
-                            column(6, 
-                                   downloadButton("dl_dist_comp", "Download District Comparison")),
-                          ),
-                          DTOutput("tbl_dist_comp")
-                ),
-                nav_panel("District Detail",
-                          fluidRow(
-                            column(6,
-                                   h3("District Detail")),
-                            column(6,
-                                   selectInput("dist_detail_tbl", "Select District:",
-                                               choices = dist_options))
-                            
-                          ),
-                          DTOutput("tbl_dist_detail")
-                ),
-               
               ),
               
               # nav menu for weight detail
