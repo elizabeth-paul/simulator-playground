@@ -729,19 +729,19 @@ observeEvent(input$apply_scenario, {
     ggplotly(
       ggplot() +
         geom_point(data = demo_model(),
-                   aes(x = pct_eds,
+                   aes(x = pov_pct_calc,
                        y = current_pp,
                        size = adm,
                        text = paste0("Current Funding", "<br>",
                                      "District: ",
                                      district, "<br>",
-                                     "ADM: ", 
+                                     "ADM: ",
                                      comma(adm, accuracy =1), "<br>",
-                                     "ED %: ", 
-                                     percent(pct_eds, accuracy = .1), "<br>",
+                                     ifelse(input$pov_data_source == "SAIPE", "SAIPE %: ", "ED %: "),
+                                     percent(pov_pct_calc, accuracy = .1), "<br>",
                                      "Current PP: ",
                                      dollar(current_pp, accuracy = 1), "<br>",
-                                     "Model PP: ", 
+                                     "Model PP: ",
                                      dollar(formula_pp, accuracy = 1), "<br>",
                                      "Diff PP: " ,
                                      dollar(pp_diff, accuracy = 1))
@@ -749,19 +749,19 @@ observeEvent(input$apply_scenario, {
                    color = "grey67",
                    alpha = .5) +
         geom_point(data = demo_model(),
-                   aes(x = pct_eds,
+                   aes(x = pov_pct_calc,
                        y = formula_pp,
-                       size = adm, 
+                       size = adm,
                        text = paste0("Modeled Funding", "<br>",
                                      "District: ",
                                      district, "<br>",
-                                     "ADM: ", 
+                                     "ADM: ",
                                      comma(adm, accuracy =1), "<br>",
-                                     "ED %: ", 
-                                     percent(pct_eds, accuracy = .1), "<br>",
+                                     ifelse(input$pov_data_source == "SAIPE", "SAIPE %: ", "ED %: "),
+                                     percent(pov_pct_calc, accuracy = .1), "<br>",
                                      "Current PP: ",
                                      dollar(current_pp, accuracy = 1), "<br>",
-                                     "Model PP: ", 
+                                     "Model PP: ",
                                      dollar(formula_pp, accuracy = 1), "<br>",
                                      "Diff PP: " ,
                                      dollar(pp_diff, accuracy = 1))
@@ -770,9 +770,10 @@ observeEvent(input$apply_scenario, {
                    alpha = .9) +
         scale_x_continuous(labels = label_percent()) +
         scale_y_continuous(labels = label_dollar()) +
-        labs(x = "% Economic Disadvantage",
+        labs(x = ifelse(input$pov_data_source == "SAIPE", "% SAIPE Poverty", "% Economic Disadvantage"),
              y = "Model Per-Pupil Funding",
-             title = "Economic Disadvantage vs. Model Per-Pupil Funding") +
+             title = ifelse(input$pov_data_source == "SAIPE", "SAIPE Poverty vs. Model Per-Pupil Funding",
+             "Economic Disadvantage vs. Model Per-Pupil Funding")) +
         theme_bw() +
         theme(text = element_text(family = "Avenir", size = 11),
               plot.caption = element_text(hjust = 0),
