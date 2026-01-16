@@ -488,14 +488,14 @@ observeEvent(input$apply_scenario, {
   dist_comp <- reactive({
     demo_model() |> 
       select(
-        district, adm, formula_total, current_total, total_diff,
+        district, adm, formula_total, current_total_w_gifted, total_diff,
         formula_pp, current_pp, pp_diff
       ) |> 
       rename(
         District = district,
         ADM = adm,
         `Model Total` = formula_total,
-        `Current Total` = current_total,
+        `Current Total` = current_total_w_gifted,
         `Total Difference, Model vs. Current` = total_diff,
         `Model Per-Pupil` = formula_pp,
         `Current Per-Pupil` = current_pp,
