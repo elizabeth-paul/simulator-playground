@@ -430,7 +430,7 @@ observeEvent(input$apply_scenario, {
       ) |>
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
                eltotal_weight_total + rural_weight_total +
-               gifted_weight_total + cte_weight_total + lowwealth_weight_total,
+               gifted_weight_total + cte_weight_total,
 
              total_diff = (total_weight_total + lowwealth_weight_total) - total_current
       ) |>
@@ -616,7 +616,7 @@ observeEvent(input$apply_scenario, {
     ) |>
       mutate(total_weight_total = base_weight_total + poverty_weight_total + sped_weight_total +
                eltotal_weight_total + rural_weight_total +
-               gifted_weight_total + cte_weight_total + lowwealth_weight_total,
+               gifted_weight_total + cte_weight_total,
 
              total_diff = (total_weight_total + lowwealth_weight_total) - total_current
       ) |>
